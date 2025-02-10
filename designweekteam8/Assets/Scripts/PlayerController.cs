@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
     public float moveSpeed = 10.0f;
     public float moveAccel = 15.0f;
 
-    public Rigidbody2D rigidbody2d;
-    
+    private Rigidbody2D rigidbody2d;
+
     // Start is called before the first frame update
     void Start()
     {
