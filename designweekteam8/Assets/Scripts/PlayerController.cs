@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Power-Ups
+    // NOTE: Change "MonoBehaviour" to whatever the power up class name is
+    public MonoBehaviour primaryPowerUp;
+    public MonoBehaviour secondaryPowerUp;
+
+    // Movement
     public float moveSpeed = 10.0f;
     public float moveAccel = 15.0f;
 
@@ -18,9 +24,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) UsePowerUp();
+        
         HandleMovement();
     }
 
+    
+    private void UsePowerUp()
+    {
+        // Check if player has Power Ups and safety check for if some how secondary Power Up dosen't get set to primary
+        if (primaryPowerUp == null)
+        {
+            // No Power Ups, return early
+            if (secondaryPowerUp == null) return;
+
+            // No primary Power Up but secondary Power Up is available, set it to primary
+            primaryPowerUp = secondaryPowerUp;
+        }
+
+        // Use Power Up
+        // NOTE: When class created change this line to "primaryPowerUp.Use()" or whatever the use function is
+
+        // After successful use of primary Power Up move secondary to primary
+        if (secondaryPowerUp) primaryPowerUp = secondaryPowerUp;
+    }
+    
     private void HandleMovement()
     {
         // Get player input
