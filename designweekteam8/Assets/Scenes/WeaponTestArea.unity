@@ -133,6 +133,8 @@ GameObject:
   - component: {fileID: 363223718}
   - component: {fileID: 363223717}
   - component: {fileID: 363223719}
+  - component: {fileID: 363223720}
+  - component: {fileID: 363223721}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -253,6 +255,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!320 &363223720
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363223716}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2b86ee70e549a8b41a4328a1d626db37, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -8833192935536401260, guid: 2b86ee70e549a8b41a4328a1d626db37, type: 2}
+    value: {fileID: 1325333363}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &363223721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363223716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b883a133e39ae49b2e5fc4d80bd95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 1325333358}
+  attack: {fileID: 363223720}
 --- !u!1 &456371550
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,16 +475,14 @@ GameObject:
   - component: {fileID: 1325333359}
   - component: {fileID: 1325333361}
   - component: {fileID: 1325333360}
-  - component: {fileID: 1325333362}
   - component: {fileID: 1325333363}
-  - component: {fileID: 1325333364}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1325333359
 Transform:
   m_ObjectHideFlags: 0
@@ -552,19 +585,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1325333362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325333358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76be19bbbfc0f1244bc31eb27c84a4fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponSpeed: 1
 --- !u!95 &1325333363
 Animator:
   serializedVersion: 5
@@ -586,18 +606,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1325333364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325333358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b883a133e39ae49b2e5fc4d80bd95a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1940721985
 GameObject:
   m_ObjectHideFlags: 0

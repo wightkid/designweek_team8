@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class WeaponAnimationManager : MonoBehaviour
 {
-    public Animator animator;
+    [SerializeField] private GameObject weapon;
+    [SerializeField] private PlayableDirector attack;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        weapon = GetComponentInChildren<GameObject>();
+        attack = weapon.GetComponentInChildren<PlayableDirector>();  
+        weapon.SetActive(false);
     }
 
     private void Update()
     {
-        WeaponAttack();
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            WeaponAttack();
+        }
     }
 
     public void WeaponAttack()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            animator.SetTrigger("Attack Trigger");
-        }
+        weapon.SetActive(true);
+        attack.Play();
     }
 }
