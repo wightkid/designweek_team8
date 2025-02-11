@@ -166,8 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366476bc1f5ef2a48afec1bfb296158f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 10, y: 10}
-  cellSize: 1
+  gridSize: {x: 16, y: 16}
+  cellSize: 1.1
+  cellPrefab: {fileID: 1440347275295171319, guid: 08696ba1d7b241c4b9b82706337321b7, type: 3}
+  mainCam: {fileID: 856640129}
 --- !u!1 &856640127
 GameObject:
   m_ObjectHideFlags: 0
