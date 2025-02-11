@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8970878516068516782}
   - component: {fileID: 8000523287796822470}
   - component: {fileID: 2420763793763782582}
+  - component: {fileID: 6578289256308001509}
   - component: {fileID: 8579783264579767450}
   m_Layer: 0
   m_Name: Player
@@ -113,6 +114,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6578289256308001509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976606487893006621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1edb9aed6ce4854aa18dd96690c2e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  health: 100
 --- !u!114 &8579783264579767450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce82bfb026060242b6baabdf98cae61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primaryPowerUp: {fileID: 0}
+  secondaryPowerUp: {fileID: 0}
+  moveSpeed: 10
+  moveAccel: 15
