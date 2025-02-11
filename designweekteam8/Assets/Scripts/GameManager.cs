@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
             cells[i] = new GameObject($"Cell_{i + 1}");
         }
     }
-
+     
     void Update()
     {
         
