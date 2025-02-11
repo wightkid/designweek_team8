@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 2985592761165469452}
-  position: {x: 0, y: 0}
   size: {x: 0, y: 0}
-  renderOrder: 1
+  renderOrder: 0
   deliverablePrefabs:
   - {fileID: 2350755728603602182, guid: 634c9dd7b37c6a64c9c399e5e5d14852, type: 3}
+  deliverableParent: {fileID: 0}

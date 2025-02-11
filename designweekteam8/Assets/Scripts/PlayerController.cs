@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Power-Ups
     // Playertag
     public int playerNumber = 0;
+    public int coinsCollected = 0;
 
     // Movement
     public float moveSpeed = 10.0f;
@@ -52,12 +53,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Destructable")
         {
-
             GameObject.Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
         {
+            GameObject.Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Coin")
+        {
+            coinsCollected++;
             GameObject.Destroy(collision.gameObject);
         }
     }
