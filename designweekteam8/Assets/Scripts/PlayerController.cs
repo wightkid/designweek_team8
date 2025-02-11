@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Power-Ups
-    // NOTE: Change "MonoBehaviour" to whatever the power up class name is
-    public MonoBehaviour primaryPowerUp;
-    public MonoBehaviour secondaryPowerUp;
+    public PowerUp primaryPowerUp;
+    public PowerUp secondaryPowerUp;
 
     // Movement
     public float moveSpeed = 10.0f;
@@ -43,10 +42,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // Use Power Up
-        // NOTE: When class created change this line to "primaryPowerUp.Use()" or whatever the use function is
+        primaryPowerUp.Use();
+        primaryPowerUp = null;
 
         // After successful use of primary Power Up move secondary to primary
-        if (secondaryPowerUp) primaryPowerUp = secondaryPowerUp;
+        if (secondaryPowerUp) 
+        {
+            primaryPowerUp = secondaryPowerUp;
+            secondaryPowerUp = null;
+        }
     }
     
     private void HandleMovement()
