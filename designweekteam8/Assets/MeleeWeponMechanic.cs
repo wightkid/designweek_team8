@@ -14,6 +14,7 @@ public class MeleeWeponMechanic : MonoBehaviour
         {
             weapon = transform.GetChild(0).gameObject;
         }
+        weapon.SetActive(false);
     }
     private void Update()
     {
@@ -22,19 +23,19 @@ public class MeleeWeponMechanic : MonoBehaviour
 
     public void AttackMechanic()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.L) && !isAttacking)
         {
             StartCoroutine(SwipeAttack(new Vector3(1.2f, 0.8f, 0), new Vector3(1.2f, -0.5f, 0)));
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
         {
             StartCoroutine(SwipeAttack(new Vector3(-1.2f, -0.8f, 0), new Vector3(-1.2f, 0.5f, 0)));
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.I) && !isAttacking)
         {
             StartCoroutine(SwipeAttack(new Vector3(-1.2f, 1f, 0), new Vector3(1.2f, 1f, 0)));
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
         {
             StartCoroutine(SwipeAttack(new Vector3(1.2f, -1f, 0), new Vector3(-1.2f, -1f, 0)));
         }

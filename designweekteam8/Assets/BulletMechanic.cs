@@ -37,19 +37,19 @@ public class BulletMechanic : MonoBehaviour
 
     public void BulletFiring()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             BulletDirection(Vector2.right);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             BulletDirection(Vector2.left);
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             BulletDirection(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             BulletDirection(Vector2.down);
         }
