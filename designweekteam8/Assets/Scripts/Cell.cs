@@ -13,6 +13,7 @@ public class Cell : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        sr.sortingOrder = renderOrder;
         
     }
 
