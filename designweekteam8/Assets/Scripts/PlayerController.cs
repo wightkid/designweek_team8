@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
             primaryPowerUp = secondaryPowerUp;
         }
 
-        // Use Power Up
-        primaryPowerUp.Use();
+        //// Use Power Up
+        //primaryPowerUp.Use();
         primaryPowerUp = null;
 
         // After successful use of primary Power Up move secondary to primary
