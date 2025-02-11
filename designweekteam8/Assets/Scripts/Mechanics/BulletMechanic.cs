@@ -6,9 +6,7 @@ public class BulletMechanic : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     private Rigidbody2D rb2D;
-    private float bulletTimer = 50f;
-    private Camera mainCam;
-    private Vector3 mousePos;
+    public float bulletTimer = 10f;
     private bool hasHit = false;
     public GameObject bullet;
 
@@ -18,21 +16,13 @@ public class BulletMechanic : MonoBehaviour
     {
         //This to make sure that the bullet will move in the mouse direction
         rb2D = GetComponent<Rigidbody2D>();
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);       
+        this.enabled = false; //Start disabled. Players start with melee
     }
 
     // Update is called once per frame
     void Update()
     {
-        ////After 50 seconds, destroy the game object
-        //bulletTimer--;
-        //if (bulletTimer <= 0)
-        //{
-        //    Destroy(gameObject);
-        //}
-
-        
+        BulletFiring();        
     }
 
     public void BulletFiring()
@@ -59,16 +49,11 @@ public class BulletMechanic : MonoBehaviour
     {
         GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
         Rigidbody2D bulletRB = newBullet.GetComponent<Rigidbody2D>();
-        bulletRB.velocity = direction * bulletSpeed;
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //Check if the collided object has a specific tag 
-        if (other.gameObject.CompareTag("Destructible"))
+
+        if(bulletRB != null )
         {
-            hasHit = true;
-            Destroy(other.gameObject);
+            bulletRB.velocity = direction * bulletSpeed;
         }
     }
 }

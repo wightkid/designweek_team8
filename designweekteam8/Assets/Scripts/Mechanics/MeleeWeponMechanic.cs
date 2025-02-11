@@ -6,19 +6,20 @@ using UnityEngine.Playables;
 public class MeleeWeponMechanic : MonoBehaviour
 {
     [SerializeField] private GameObject weapon;
-    private bool isAttacking = false;
+    private bool isAttacking = false; //checking when the player confirms input
 
     private void Start()
     {
-        if(weapon == null)
+        this.enabled = true;
+        if (weapon == null)
         {
             weapon = transform.GetChild(0).gameObject;
         }
-        weapon.SetActive(false);
+        weapon.SetActive(false); //Set weapon collider to false at the start
     }
     private void Update()
     {
-        
+        AttackMechanic();
     }
 
     public void AttackMechanic()
@@ -43,9 +44,9 @@ public class MeleeWeponMechanic : MonoBehaviour
 
     private IEnumerator SwipeAttack(Vector3 start, Vector3 end)
     {
-        isAttacking = true;
+        isAttacking = true; //When this function is called, set is attacking to true
         weapon.SetActive(true);
-        weapon.transform.localPosition = start;
+        weapon.transform.localPosition = start; //When function is called, set the position of attack collider to start
 
         float attackDuration = 0.2f;
         float elapsedTime = 0;
