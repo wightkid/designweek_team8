@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    int numberOfPlayers = 0;
+    public int numberOfPlayers;
 
     // TODO: change cells from gameObject to cells
     GameObject[] cells;
@@ -14,12 +14,25 @@ public class GameManager : MonoBehaviour
     GameObject cellParent;
     public GameObject cellPrefab;
     public Camera mainCam;
-    
+
+    public GameObject[] spawnPoints = new GameObject[4];
+    public GameObject[] players;
+    public GameObject playerPrefab;
 
     void Start()
     {
-        // Get number of players selected
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
+        players = new GameObject[numberOfPlayers];
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i] = Instantiate(playerPrefab);
+            players[i].transform.position = spawnPoints[i].transform.position;
+        }
+
+        /*
+        // Get number of players selected
+        
         numberOfCells = (int)gridSize.x * (int)gridSize.y;
         cells = new GameObject[numberOfCells];
         cellParent = new GameObject("Cells");
@@ -43,10 +56,12 @@ public class GameManager : MonoBehaviour
             }
         }
         UpdateCameraPosition();
+        */
     }
      
     void Update()
     {
+        /*
         int cellIndex = 0;
         for (int row = 0; row < gridSize.y; row++)
         {
@@ -58,7 +73,10 @@ public class GameManager : MonoBehaviour
             }
         }
         UpdateCameraPosition();
+        */
     }
+
+
 
     // Set camera position to the midpoint of the grid matrix
     void UpdateCameraPosition()
