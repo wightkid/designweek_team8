@@ -32,6 +32,11 @@ public class BulletMechanic : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
+        
+    }
+
+    public void BulletFiring()
+    {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             BulletDirection(Vector2.right);

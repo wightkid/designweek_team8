@@ -14,11 +14,15 @@ public class MeleeWeponMechanic : MonoBehaviour
         {
             weapon = transform.GetChild(0).gameObject;
         }
-        weapon.SetActive(false); //Hide attack at start
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.RightArrow) && !isAttacking)
+        
+    }
+
+    public void AttackMechanic()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !isAttacking)
         {
             StartCoroutine(SwipeAttack(new Vector3(1.2f, 0.8f, 0), new Vector3(1.2f, -0.5f, 0)));
         }
