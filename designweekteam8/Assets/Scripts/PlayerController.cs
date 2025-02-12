@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,29 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10.0f;
     public float moveAccel = 15.0f;
 
+    // Multiplayer functionality
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+    private InputAction move;
+
     private Rigidbody2D rigidbody2d;
+
+    private void Awake()
+    {
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        player = inputAsset.FindActionMap("Player");
+    }
+
+    private void OnEnable()
+    {
+        move = player.FindAction("Move");
+        player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        player.Disable();
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -46,10 +46,10 @@ public class Level : MonoBehaviour
         // Adjust their colors and transform them to their respective spawnpoints
         for (int i = 0; i < players.Length; i++)
         {
-            players[i] = Instantiate(playerPrefab);
-            SpriteRenderer player_sr = players[i].GetComponent<SpriteRenderer>();
-            player_sr.color = playerColors[i];
-            players[i].transform.position = spawnPoints[i].transform.position;
+            //players[i] = Instantiate(playerPrefab);
+            //SpriteRenderer player_sr = players[i].GetComponent<SpriteRenderer>();
+            //player_sr.color = playerColors[i];
+            //players[i].transform.position = spawnPoints[i].transform.position;
         }
 
         numberOfCells = (int)gridSize.x * (int)gridSize.y;
@@ -119,7 +119,6 @@ public class Level : MonoBehaviour
             }
         }
     }
-
     void SaveLevel(string levelName)
     {
         // saveLevel *****************DEPRECIATED(TOO MUCH INVOLVEMENT)
