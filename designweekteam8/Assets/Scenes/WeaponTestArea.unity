@@ -135,12 +135,12 @@ GameObject:
   - component: {fileID: 363223719}
   - component: {fileID: 363223723}
   - component: {fileID: 363223720}
-  - component: {fileID: 363223721}
   - component: {fileID: 363223722}
+  - component: {fileID: 363223725}
   - component: {fileID: 363223724}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,19 +277,6 @@ PlayableDirector:
     value: {fileID: 1325333363}
   m_ExposedReferences:
     m_References: []
---- !u!114 &363223721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363223716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dabcd33d7b5f8641b104f199b9f2203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1325333358}
 --- !u!114 &363223722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,9 +318,22 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &363223724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363223716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dabcd33d7b5f8641b104f199b9f2203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 1325333358}
+--- !u!114 &363223725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  bulletTimer: 50
+  bulletTimer: 10
   bullet: {fileID: 8753566423177401990, guid: a8fc1693df1f5c149b8c3eab74236f7b, type: 3}
 --- !u!1 &456371550
 GameObject:
@@ -535,9 +535,10 @@ GameObject:
   - component: {fileID: 683695849}
   - component: {fileID: 683695848}
   - component: {fileID: 683695850}
+  - component: {fileID: 683695851}
   m_Layer: 0
   m_Name: GunPickup
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,12 +639,25 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &683695851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683695847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9c369af66bfe9419779ddaad511ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: {fileID: 11400000, guid: 67dadc18d5e73864b8d0953f0ebe9643, type: 2}
 --- !u!1 &1325333358
 GameObject:
   m_ObjectHideFlags: 0
