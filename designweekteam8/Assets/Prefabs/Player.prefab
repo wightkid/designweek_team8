@@ -171,6 +171,7 @@ MonoBehaviour:
   moneyPickedUp:
     m_PersistentCalls:
       m_Calls: []
+  coinPrefab: {fileID: 8974484161786664545, guid: 18e93ad598776c44bb0f4e7032ed785d, type: 3}
   dropPercentage: 0.5
   money: 0
   health: 100
