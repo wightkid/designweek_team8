@@ -23,10 +23,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        int playerNumber = PlayerPrefs.GetInt("playerNumber");
+        
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
-        gameObject.name = $"Player_{PlayerPrefs.GetInt("playerNumber")}";
-        PlayerPrefs.SetInt("playerNumber", PlayerPrefs.GetInt("playerNumber") + 1);
+        gameObject.name = $"Player_{playerNumber}";
+
+
+        gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
+
+        if (playerNumber <= 3)
+        {
+            PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
+        }
+        
     }
 
     private void OnEnable()

@@ -40,7 +40,8 @@ public class Level : MonoBehaviour
         // Get number of players from the player select screen
         // Initialize array of players
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
-        PlayerPrefs.SetInt("playerNumber", 1);
+        PlayerPrefs.SetInt("playerNumber", 0);
+        Debug.Log(PlayerPrefs.GetInt("playerNumber"));
         players = new GameObject[numberOfPlayers];
 
         // Instantiate playerPrefabs for given amount of players
@@ -147,7 +148,7 @@ public class Level : MonoBehaviour
     void LoadLevel(string levelName)
     {
         CreateCells();
-        StreamReader sr = new StreamReader("C:\\Users\\Brandon\\Documents\\GitHub\\safe-crack\\designweekt8\\designweekteam8\\Assets\\LevelData\\" + levelName + ".txt");
+        StreamReader sr = new StreamReader(Application.dataPath + "\\LevelData\\" + levelName + ".txt");
         string[] tempStrings = sr.ReadToEnd().Split('-');
         int[] tempInts = new int[tempStrings.Length];
 
