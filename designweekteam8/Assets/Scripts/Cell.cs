@@ -10,18 +10,15 @@ public class Cell : MonoBehaviour
     public GameObject[] deliverablePrefabs;
     public GameObject deliverableParent;
 
-
-    void Start()
+    private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sortingOrder = renderOrder;
 
-        if (deliverableParent == null)
-        {
-            deliverableParent = GameObject.Find("Deliverables");
-        }
-
+        deliverableParent = GameObject.Find("Deliverables");
     }
+
+
 
     void Update()
     {
@@ -36,7 +33,17 @@ public class Cell : MonoBehaviour
             deliverable.transform.SetParent(deliverableParent.transform);
             Destroy();
         }
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MouseCollider")
+        {
+            GameObject.Destroy(this);
+        }
+    }
+
     void Destroy()
     {
         GameObject.Destroy(this);
