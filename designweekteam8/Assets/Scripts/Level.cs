@@ -74,6 +74,11 @@ public class Level : MonoBehaviour
 
         if (TOGGLEEDIT)
         {
+            for (int player = 0; player < players.Length; player++)
+            {
+                GameObject.Destroy(players[player].gameObject);
+            }
+
             mouseCollider = new GameObject("MOUSECOLLIDER");
             mouseCollider.AddComponent<CircleCollider2D>();
             mouseCollider.AddComponent<Rigidbody2D>();
@@ -100,9 +105,13 @@ public class Level : MonoBehaviour
             //    mouseCollider.SetActive(false);
             //}
 
+            
             if (saveLevel)
             {
-                string path = Path.Combine(Application.persistentDataPath, levelName);
+
+                string levelData = "";
+
+                string path = Path.Combine(Application.persistentDataPath, levelName + ".txt");
 
                 float[][] levelPositions = new float[cells.Length][];
 
@@ -111,8 +120,8 @@ public class Level : MonoBehaviour
                     if (cells[i].activeSelf)
                     {
                         // Writes to file: Index_posX_posY|Index_posX_posY|etc.
-                        File.WriteAllText(path, $"{i}('_'){cells[i].transform.position.x}('_'){cells[i].transform.position.y}('|')");
-
+                        levelData += $"{i}('_'){cells[i].transform.position.x}('_'){cells[i].transform.position.y}('|')";
+                        
                     }
                 }
 
@@ -126,7 +135,8 @@ public class Level : MonoBehaviour
                         cellIndex++;
                     }
                 }
-
+                File.WriteAllText(path, levelData);
+                Debug.Log(path);
                 saveLevel = false;
             }
 
