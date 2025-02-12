@@ -38,6 +38,7 @@ public class PlayerSelectScreen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerPrefs.SetInt("NumberOfPlayers", currentSelection + 2);
+            PlayerPrefs.SetString("CurrentLevel", "LevelOne");
             SceneManager.LoadScene(2);
         }
 

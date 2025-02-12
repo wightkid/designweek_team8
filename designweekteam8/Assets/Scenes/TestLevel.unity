@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1747213982283532179
+--- !u!1001 &834068844
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -130,6 +130,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1066038590187729463, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610440925472539719, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1930181626016189091, guid: 7a625f30390b338438b4d5e127374833, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3561554
@@ -170,6 +178,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2491760006438793576, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2614525147697383764, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553702697049711004, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 4900000, guid: 06dd60e0d4ffb5c4998e47f8c64cfec1, type: 3}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: saveLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: TOGGLEEDIT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: loadLevelName
+      value: levelTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352855436292187971, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8820826871153964696, guid: 7a625f30390b338438b4d5e127374833, type: 3}
       propertyPath: m_Name
       value: Level
@@ -183,4 +223,4 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1747213982283532179}
+  - {fileID: 834068844}
