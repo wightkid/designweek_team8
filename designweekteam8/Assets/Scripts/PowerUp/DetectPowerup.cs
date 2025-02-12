@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class DetectPowerup : MonoBehaviour
 {
+    //This script should be placed on the powerup game object
+
     public PowerUp powerUp;
-    public bool powerUpActive;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        powerUpActive = false;
+        //When player collides with power up object 
         if (collision.CompareTag("Player"))
         {
+            //Activate the power up script of the current power up
             powerUp.Use(collision.gameObject);
             Destroy(gameObject);
         }

@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New PowerUp", menuName = "Power Up") ]
 public class PowerUp : ScriptableObject
 {
-    public float duration = 10f; //Duration
-
+    //This script doesn't need to be applied to anything
     public string powerUpName;
 
     public virtual void Use(GameObject player)
@@ -18,15 +17,4 @@ public class PowerUp : ScriptableObject
     {
         Debug.Log($"Power Up: {powerUpName}");
     }
-
-    //public abstract void Use(GameObject player);
-
-    //public abstract void End(GameObject player);
-
-    //public IEnumerator PowerUpTimer(GameObject player)
-    //{
-    //    Use(player);
-    //    yield return new WaitForSeconds(duration);
-    //    End(player);
-    //}
 }

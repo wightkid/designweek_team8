@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PowerUpTimer : MonoBehaviour
 {
+    //Written so that no matter which power up we have
+    //will always switch back to standard melee once timer ends
+
     public float powerUpTimer = 10f;
     public PowerUp powerUp;
     MeleeWeponMechanic melee;
@@ -18,9 +21,10 @@ public class PowerUpTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If the melee script has been disabled
         if(melee.enabled == false)
         {
-            powerUpTimer -= Time.deltaTime;
+            powerUpTimer -= Time.deltaTime; //Start timer for how long the power up lasts
             if(powerUpTimer <= 0 )
             {
                 powerUp.Use(player);
