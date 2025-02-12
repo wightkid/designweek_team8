@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,9 +23,14 @@ public class Level : MonoBehaviour
     public Color[] playerColors = new Color[4];
     public GameObject[] players;
     public GameObject playerPrefab;
-    public TextAsset levelData;
+    
 
     GameObject mouseCollider;
+
+    [Header("SAVE LEVEL")]
+    public bool saveLevel;
+    public string levelName;
+    public TextAsset levelData;
 
     void Start()
     {
@@ -72,7 +78,7 @@ public class Level : MonoBehaviour
             mouseCollider.AddComponent<CircleCollider2D>();
             mouseCollider.AddComponent<Rigidbody2D>();
             mouseCollider.tag = "MouseCollider";
-            mouseCollider.GetComponent<CircleCollider2D>().isTrigger = true;
+            mouseCollider.GetComponent<CircleCollider2D>().isTrigger = false;
             mouseCollider.SetActive(true);
         }
     }
@@ -85,15 +91,45 @@ public class Level : MonoBehaviour
             Vector3 tempPos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
             
             mouseCollider.GetComponent<Rigidbody2D>().MovePosition(new Vector2(tempPos.x, tempPos.y));
-            if (Input.GetMouseButton(0))
+            //if (Input.GetMouseButton(0))
+            //{
+            //    mouseCollider.SetActive(true);
+            //}
+            //else
+            //{
+            //    mouseCollider.SetActive(false);
+            //}
+
+            if (saveLevel)
             {
-                mouseCollider.SetActive(true);
+                string path = Path.Combine(Application.persistentDataPath, levelName);
+
+                float[][] levelPositions = new float[cells.Length][];
+
+                for (int i = 0; i < cells.Length; i++)
+                {
+                    if (cells[i].activeSelf)
+                    {
+                        // Writes to file: Index_posX_posY|Index_posX_posY|etc.
+                        File.WriteAllText(path, $"{i}('_'){cells[i].transform.position.x}('_'){cells[i].transform.position.y}('|')");
+
+                    }
+                }
+
+                int cellIndex = 0;
+                for (int row = 0; row < gridSize.y; row++)
+                {
+                    for (int col = 0; col < gridSize.x; col++)
+                    {
+                        Vector2 newPosition = new Vector2(col * cellSize, row * cellSize);
+                        cells[cellIndex].transform.position = newPosition;
+                        cellIndex++;
+                    }
+                }
+
+                saveLevel = false;
             }
-            else
-            {
-                mouseCollider.SetActive(false);
-            }
-            
+
         }
     }
 

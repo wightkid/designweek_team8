@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7833143797557450711}
   - component: {fileID: 838186719350194251}
   - component: {fileID: 4949700320150793459}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CellPrefab
   m_TagString: Cell
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr: {fileID: 2985592761165469452}
   size: {x: 0, y: 0}
-  renderOrder: 0
+  renderOrder: 20
   deliverablePrefabs:
   - {fileID: 2350755728603602182, guid: 634c9dd7b37c6a64c9c399e5e5d14852, type: 3}
   deliverableParent: {fileID: 0}

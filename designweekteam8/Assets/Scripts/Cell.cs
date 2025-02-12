@@ -10,19 +10,21 @@ public class Cell : MonoBehaviour
     public GameObject[] deliverablePrefabs;
     public GameObject deliverableParent;
 
+    [Header("SAVE LEVEL")]
+    public bool saveLevel;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sortingOrder = renderOrder;
 
         deliverableParent = GameObject.Find("Deliverables");
+        Physics2D.queriesHitTriggers = true;
     }
 
-
-
-    void Update()
+    private void OnMouseDown()
     {
-        
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,16 +38,14 @@ public class Cell : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.gameObject.tag == "MouseCollider")
-        {
-            GameObject.Destroy(this);
-        }
+
     }
+
 
     void Destroy()
     {
-        GameObject.Destroy(this);
+        GameObject.Destroy(gameObject);
     }
 }
