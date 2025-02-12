@@ -3,12 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Destructable
+  - Coin
+  - MouseCollider
+  - Cell
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cells
   - Water
   - UI
   - 
