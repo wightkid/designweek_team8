@@ -44,4 +44,12 @@ public class PlayerStats : MonoBehaviour
 
         // NOTE: need more functionality here
     }
+
+    public void PickUpCoin(Coin coin)
+    {
+        money += coin.value;
+        moneyPickedUp.Invoke();
+
+        Destroy(coin.gameObject);
+    }
 }
