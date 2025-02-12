@@ -10,8 +10,6 @@ public class Cell : MonoBehaviour
     public GameObject[] deliverablePrefabs;
     public GameObject deliverableParent;
 
-    [Header("SAVE LEVEL")]
-    public bool saveLevel;
 
     private void Awake()
     {
