@@ -125,5 +125,4 @@ public class PlayerController : MonoBehaviour
         // Add new velocity to rigidbody
         rigidbody2d.velocity = new Vector2(velocityX, velocityY);
     }
-
 }
