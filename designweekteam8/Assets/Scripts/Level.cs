@@ -47,7 +47,6 @@ public class Level : MonoBehaviour
         cells = new GameObject[numberOfCells];
         cellParent = new GameObject("Cells");
 
-
         //------------------------------------------------------------------------------------
         // LEVEL EDITING
         if (TOGGLEEDIT)
@@ -77,8 +76,6 @@ public class Level : MonoBehaviour
         //------------------------------------------------------------------------------------
     }
 
-  
-
     void Update()
     {
         //------------------------------------------------------------------------------------
@@ -89,6 +86,7 @@ public class Level : MonoBehaviour
         }
         //------------------------------------------------------------------------------------
     }
+
     void CreateCells()
     {
         for (int i = 0; i < cells.Length; i++)
@@ -116,7 +114,7 @@ public class Level : MonoBehaviour
         if (saveLevel)
         {
             string levelData = "";
-            string path = Path.Combine(Application.streamingAssetsPath, "LevelData\\" + levelName + ".txt");
+            string path = Path.Combine(Application.streamingAssetsPath, "\\LevelData\\" + levelName + ".txt");
             float[][] levelPositions = new float[cells.Length][];
 
             // Only write the cells that are not toggled
@@ -165,11 +163,6 @@ public class Level : MonoBehaviour
         for (int i = 0; i < cells.Length; i++)
         {
             cells[i].GetComponent<Cell>().isToggled = !cells[i].GetComponent<Cell>().isToggled;
-        }
-
-        // Set new toggled cells to inactive
-        for (int i = 0; i < cells.Length; i++)
-        {
             if (cells[i].GetComponent<Cell>().isToggled)
             {
                 cells[i].SetActive(false);

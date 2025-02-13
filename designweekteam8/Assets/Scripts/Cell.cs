@@ -36,15 +36,20 @@ public class Cell : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /* 
+        ///* 
         // Temproary player collision with cells
         if (collision.gameObject.tag == "Player")
         {
-            GameObject deliverable = Instantiate(deliverablePrefabs[0], gameObject.transform.position, Quaternion.identity);
-            deliverable.transform.SetParent(deliverableParent.transform);
+            int ran = Random.Range(0, 25);
+
+            if (ran > 15)
+            {
+                GameObject deliverable = Instantiate(deliverablePrefabs[0], gameObject.transform.position, Quaternion.identity);
+                deliverable.transform.SetParent(deliverableParent.transform);
+            }
             Destroy();
         }
-        */
+        //*/
     }
 
     private void Update()
