@@ -17,12 +17,19 @@ public class PlayerController : MonoBehaviour
     //Sprites
     public SpriteRenderer playerSprite;
     public Sprite[] otherSprites;
+    public SpriteRenderer weaponSprite;
+    public Sprite[] powerUpSprite;
+    [SerializeField] private GameObject weapon;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
+        if(weapon != null)
+        {
+            weaponSprite = weapon.GetComponent<SpriteRenderer>();
+        }
     }
 
     // Update is called once per frame
@@ -86,21 +93,62 @@ public class PlayerController : MonoBehaviour
         {
             playerSprite.sprite = otherSprites[1];
             playerSprite.flipX = false;
+            if(gameObject.GetComponent<BulletMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[1];
+                weaponSprite.flipX = false;
+            }
+            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[0];
+                weaponSprite.flipX = false;
+            }
+            
         }
         if (direction.x < 0)
         {
             playerSprite.sprite = otherSprites[1];
             playerSprite.flipX = true;
+            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[1];
+                weaponSprite.flipX = true;
+            }
+            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[0];
+                weaponSprite.flipX = true;
+            }
         }
         if (direction.y > 0)
         {
             playerSprite.sprite = otherSprites[2];
             playerSprite.flipY = false;
+            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[1];
+                weaponSprite.flipX = false;
+            }
+            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[0];
+                weaponSprite.flipX = false;
+            }
         }
         if (direction.y < 0)
         {
             playerSprite.sprite = otherSprites[0];
             playerSprite.flipY = false;
+            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[2];
+                weaponSprite.flipX = false;
+            }
+            else if(gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+            {
+                weaponSprite.sprite = powerUpSprite[0];
+                weaponSprite.flipX = false;
+            }
         }
     }
 }
