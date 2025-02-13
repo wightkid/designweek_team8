@@ -30,11 +30,40 @@ public class PlayerController : MonoBehaviour
     {
         int playerNumber = PlayerPrefs.GetInt("playerNumber");
 
-        inputAsset = this.GetComponent<PlayerInput>().actions;
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        if (playerInput == null)
+        {
+            Debug.LogError("PlayerInput component is missing on " + gameObject.name);
+            return;
+        }
+
+        inputAsset = playerInput.actions;
+
+        // Ensure inputAsset isn't null before using it
+        if (inputAsset == null)
+        {
+            Debug.LogError("InputActionAsset is missing in PlayerInput on " + gameObject.name);
+            return;
+        }
+
         player = inputAsset.FindActionMap("Player");
+        if (player == null)
+        {
+            Debug.LogError("ActionMap 'Player' not found in InputActionAsset.");
+            return;
+        }
+
         gameObject.name = $"Player_{playerNumber}";
 
-        gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
+        Transform spawnLocationParent = GameObject.Find("Spawn Locations")?.transform;
+        if (spawnLocationParent != null && spawnLocationParent.childCount > playerNumber)
+        {
+            gameObject.transform.position = spawnLocationParent.GetChild(playerNumber).position;
+        }
+        else
+        {
+            Debug.LogError("Spawn location not found for player " + playerNumber);
+        }
 
         player.Enable();
 
@@ -43,6 +72,25 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
         }
     }
+
+
+    //private void Awake()
+    //{
+    //    int playerNumber = PlayerPrefs.GetInt("playerNumber");
+
+    //    inputAsset = this.GetComponent<PlayerInput>().actions;
+    //    player = inputAsset.FindActionMap("Player");
+    //    gameObject.name = $"Player_{playerNumber}";
+
+    //    gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
+
+    //    player.Enable();
+
+    //    if (playerNumber <= 3)
+    //    {
+    //        PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
+    //    }
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -116,72 +164,72 @@ public class PlayerController : MonoBehaviour
         // Add new velocity to rigidbody
         rigidbody2d.velocity = new Vector2(velocityX, velocityY);
 
-        //Change the sprite depending the direction of player
-        ChangeSprite(direction);
+        ////Change the sprite depending the direction of player
+        //ChangeSprite(direction);
     }
 
-    private void ChangeSprite(Vector2 direction)
-    {
-        if (direction.x > 0)
-        {
-            playerSprite.sprite = otherSprites[1];
-            playerSprite.flipX = false;
-            if(gameObject.GetComponent<BulletMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[1];
-                weaponSprite.flipX = false;
-            }
-            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[0];
-                weaponSprite.flipX = false;
-            }
+    //private void ChangeSprite(Vector2 direction)
+    //{
+    //    if (direction.x > 0)
+    //    {
+    //        playerSprite.sprite = otherSprites[1];
+    //        playerSprite.flipX = false;
+    //        if(gameObject.GetComponent<BulletMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[1];
+    //            weaponSprite.flipX = false;
+    //        }
+    //        else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[0];
+    //            weaponSprite.flipX = false;
+    //        }
             
-        }
-        if (direction.x < 0)
-        {
-            playerSprite.sprite = otherSprites[1];
-            playerSprite.flipX = true;
-            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[1];
-                weaponSprite.flipX = true;
-            }
-            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[0];
-                weaponSprite.flipX = true;
-            }
-        }
-        if (direction.y > 0)
-        {
-            playerSprite.sprite = otherSprites[2];
-            playerSprite.flipY = false;
-            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[1];
-                weaponSprite.flipX = false;
-            }
-            else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[0];
-                weaponSprite.flipX = false;
-            }
-        }
-        if (direction.y < 0)
-        {
-            playerSprite.sprite = otherSprites[0];
-            playerSprite.flipY = false;
-            if (gameObject.GetComponent<BulletMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[2];
-                weaponSprite.flipX = false;
-            }
-            else if(gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
-            {
-                weaponSprite.sprite = powerUpSprite[0];
-                weaponSprite.flipX = false;
-            }
-        }
-    }
+    //    }
+    //    if (direction.x < 0)
+    //    {
+    //        playerSprite.sprite = otherSprites[1];
+    //        playerSprite.flipX = true;
+    //        if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[1];
+    //            weaponSprite.flipX = true;
+    //        }
+    //        else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[0];
+    //            weaponSprite.flipX = true;
+    //        }
+    //    }
+    //    if (direction.y > 0)
+    //    {
+    //        playerSprite.sprite = otherSprites[2];
+    //        playerSprite.flipY = false;
+    //        if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[1];
+    //            weaponSprite.flipX = false;
+    //        }
+    //        else if (gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[0];
+    //            weaponSprite.flipX = false;
+    //        }
+    //    }
+    //    if (direction.y < 0)
+    //    {
+    //        playerSprite.sprite = otherSprites[0];
+    //        playerSprite.flipY = false;
+    //        if (gameObject.GetComponent<BulletMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[2];
+    //            weaponSprite.flipX = false;
+    //        }
+    //        else if(gameObject.GetComponent<MeleeWeponMechanic>().enabled == true)
+    //        {
+    //            weaponSprite.sprite = powerUpSprite[0];
+    //            weaponSprite.flipX = false;
+    //        }
+    //    }
+    //}
 }
