@@ -40,34 +40,31 @@ public class Level : MonoBehaviour
         // Get number of players from the player select screen
         // Initialize array of players
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
+        PlayerPrefs.SetInt("playerNumber", 0);
         players = new GameObject[numberOfPlayers];
-
-        // Instantiate playerPrefabs for given amount of players
-        // Adjust their colors and transform them to their respective spawnpoints
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i] = Instantiate(playerPrefab);
-            SpriteRenderer player_sr = players[i].GetComponent<SpriteRenderer>();
-            player_sr.color = playerColors[i];
-            players[i].transform.position = spawnPoints[i].transform.position;
-        }
-
+        
         numberOfCells = (int)gridSize.x * (int)gridSize.y;
         cells = new GameObject[numberOfCells];
         cellParent = new GameObject("Cells");
-
-        
-
-        // Update camera to focus on the grid of cells
-        //UpdateCameraPosition();
 
 
         //------------------------------------------------------------------------------------
         // LEVEL EDITING
         if (TOGGLEEDIT)
         {
-            Debug.Log("Lets see it");
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i] = Instantiate(playerPrefab);
+                SpriteRenderer player_sr = players[i].GetComponent<SpriteRenderer>();
+                player_sr.color = playerColors[i];
+                players[i].transform.position = spawnPoints[i].transform.position;
+            }
+
             CreateCells();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                cells[i].GetComponent<Cell>().isEditing = true;
+            }
             for (int player = 0; player < players.Length; player++)
             {
                 GameObject.Destroy(players[player].gameObject);
@@ -91,13 +88,6 @@ public class Level : MonoBehaviour
             SaveLevel(saveLevelName);
         }
         //------------------------------------------------------------------------------------
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            PlayerPrefs.SetString("CurrentLevel", "LevelTwo");
-            SceneManager.LoadScene(2);
-        }
-
     }
     void CreateCells()
     {
@@ -126,7 +116,7 @@ public class Level : MonoBehaviour
         if (saveLevel)
         {
             string levelData = "";
-            string path = Path.Combine(Application.dataPath, "LevelData\\" + levelName + ".txt");
+            string path = Path.Combine(Application.streamingAssetsPath, "LevelData\\" + levelName + ".txt");
             float[][] levelPositions = new float[cells.Length][];
 
             // Only write the cells that are not toggled
@@ -144,10 +134,13 @@ public class Level : MonoBehaviour
         }
     }
 
+    // This is multiple levels of jank, but it functions
     void LoadLevel(string levelName)
     {
+        // Create cell grid
         CreateCells();
-        StreamReader sr = new StreamReader(Application.dataPath + "\\LevelData\\" + levelName + ".txt");
+        // Read data from leveldata.txt, split strings into ints
+        StreamReader sr = new StreamReader(Application.streamingAssetsPath + "\\LevelData\\" + levelName + ".txt");
         string[] tempStrings = sr.ReadToEnd().Split('-');
         int[] tempInts = new int[tempStrings.Length];
 
@@ -162,16 +155,19 @@ public class Level : MonoBehaviour
         }
         sr.Close();
 
+        // loop through ints, and toggle active cells
         for (int i = 0; i < tempInts.Length; i++)
         {
             cells[tempInts[i]].GetComponent<Cell>().isToggled = true;
         }
 
+        // Flip toggled cells
         for (int i = 0; i < cells.Length; i++)
         {
             cells[i].GetComponent<Cell>().isToggled = !cells[i].GetComponent<Cell>().isToggled;
         }
 
+        // Set new toggled cells to inactive
         for (int i = 0; i < cells.Length; i++)
         {
             if (cells[i].GetComponent<Cell>().isToggled)
@@ -179,21 +175,5 @@ public class Level : MonoBehaviour
                 cells[i].SetActive(false);
             }
         }
-    }
-
-    void ReadLevelData(TextAsset file)
-    {
-        Debug.Log(file.text);
-    }
-
-    
-
-    // Set camera position to the midpoint of the grid matrix
-    void UpdateCameraPosition()
-    {
-        // Update camera
-        float camX = cells[0].transform.position.x + cells[cells.Length - 1].transform.position.x * 0.5f;
-        float camY = cells[0].transform.position.y + cells[cells.Length - 1].transform.position.y * 0.5f;
-        mainCam.transform.position = new Vector3(camX, camY, -0.35f);
     }
 }
