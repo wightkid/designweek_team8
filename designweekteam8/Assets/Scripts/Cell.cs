@@ -10,6 +10,7 @@ public class Cell : MonoBehaviour
     public GameObject[] deliverablePrefabs;
     public GameObject deliverableParent;
     public bool isToggled = false;
+    public bool isEditing = false;
 
 
     private void Awake()
@@ -26,11 +27,16 @@ public class Cell : MonoBehaviour
 
     private void OnMouseDown()
     {
-        isToggled = !isToggled;
+        // Only allow toggling sprite renderer of a cell if isEditing is enabled
+        if (isEditing)
+        {
+            isToggled = !isToggled;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        /* 
         // Temproary player collision with cells
         if (collision.gameObject.tag == "Player")
         {
@@ -38,7 +44,7 @@ public class Cell : MonoBehaviour
             deliverable.transform.SetParent(deliverableParent.transform);
             Destroy();
         }
-
+        */
     }
 
     private void Update()

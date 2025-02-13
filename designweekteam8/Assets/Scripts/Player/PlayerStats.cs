@@ -27,7 +27,8 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) Kill();
+        // Removed due to Start on gamepad = kill player -bc
+        //if (Input.GetKeyDown(KeyCode.Escape)) Kill();
     }
 
     public void Damage(int damage) 
