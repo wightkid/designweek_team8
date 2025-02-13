@@ -9,24 +9,29 @@ public class Cell : MonoBehaviour
     public int renderOrder = 1;
     public GameObject[] deliverablePrefabs;
     public GameObject deliverableParent;
+    public bool isToggled = false;
 
 
     private void Awake()
     {
+        // Create sprite renderer and set sorting order
         sr = GetComponent<SpriteRenderer>();
         sr.sortingOrder = renderOrder;
 
+        // Find deliverables parent, enable queriesHitTriggers for levelEditing
         deliverableParent = GameObject.Find("Deliverables");
         Physics2D.queriesHitTriggers = true;
     }
 
+
     private void OnMouseDown()
     {
-        gameObject.SetActive(false);
+        isToggled = !isToggled;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Temproary player collision with cells
         if (collision.gameObject.tag == "Player")
         {
             GameObject deliverable = Instantiate(deliverablePrefabs[0], gameObject.transform.position, Quaternion.identity);
@@ -38,7 +43,7 @@ public class Cell : MonoBehaviour
 
     private void Update()
     {
-
+        sr.enabled = !isToggled;
     }
 
 

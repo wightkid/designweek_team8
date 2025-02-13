@@ -103,8 +103,9 @@ MonoBehaviour:
   size: {x: 0, y: 0}
   renderOrder: 20
   deliverablePrefabs:
-  - {fileID: 2350755728603602182, guid: 634c9dd7b37c6a64c9c399e5e5d14852, type: 3}
-  deliverableParent: {fileID: 0}
+  - {fileID: 2350755728603602182, guid: e82ed2b2823ce0b4e98cc4acf5f64bbd, type: 3}
+  deliverableParent: {fileID: 2350755728603602182, guid: e82ed2b2823ce0b4e98cc4acf5f64bbd, type: 3}
+  isToggled: 0
 --- !u!61 &838186719350194251
 BoxCollider2D:
   m_ObjectHideFlags: 0

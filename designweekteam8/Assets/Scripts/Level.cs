@@ -3,34 +3,37 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
     public int numberOfPlayers = 0;
 
-    [Header("LEVEL EDIT")]
-    public bool TOGGLEEDIT = false;
-
+    public GameObject cellPrefab;
+    public Camera mainCam;
     GameObject[] cells;
+    GameObject cellParent;
     public Vector2 gridSize = Vector2.zero;
     public float cellSize = 1f;
     int numberOfCells;
-    GameObject cellParent;
-    public GameObject cellPrefab;
-    public Camera mainCam;
-
+    
     public GameObject[] spawnPoints = new GameObject[4];
     public Color[] playerColors = new Color[4];
-    public GameObject[] players;
     public GameObject playerPrefab;
-    
+    public GameObject[] players;
 
-    GameObject mouseCollider;
+    [Header("LEVEL EDIT")]
+    public bool TOGGLEEDIT;
 
     [Header("SAVE LEVEL")]
-    public bool saveLevel;
-    public string levelName;
+    public bool saveLevel = false;
+    public bool flipCellActives = false;
+    public string saveLevelName;
     public TextAsset levelData;
+
+    //[Header("LOAD LEVEL")]
+    //public bool loadLevel = false;
+    //public string loadLevelName;
 
     void Start()
     {
@@ -39,7 +42,8 @@ public class Level : MonoBehaviour
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
         players = new GameObject[numberOfPlayers];
 
-        // Instantiate a playerPrefab
+        // Instantiate playerPrefabs for given amount of players
+        // Adjust their colors and transform them to their respective spawnpoints
         for (int i = 0; i < players.Length; i++)
         {
             players[i] = Instantiate(playerPrefab);
@@ -52,7 +56,51 @@ public class Level : MonoBehaviour
         cells = new GameObject[numberOfCells];
         cellParent = new GameObject("Cells");
 
-        // Create new gameobject, format name, set parent
+        
+
+        // Update camera to focus on the grid of cells
+        //UpdateCameraPosition();
+
+
+        //------------------------------------------------------------------------------------
+        // LEVEL EDITING
+        if (TOGGLEEDIT)
+        {
+            Debug.Log("Lets see it");
+            CreateCells();
+            for (int player = 0; player < players.Length; player++)
+            {
+                GameObject.Destroy(players[player].gameObject);
+            }
+        }
+        else
+        {
+            LoadLevel(PlayerPrefs.GetString("CurrentLevel"));
+        }
+        //------------------------------------------------------------------------------------
+    }
+
+  
+
+    void Update()
+    {
+        //------------------------------------------------------------------------------------
+        // LEVEL EDITING
+        if (TOGGLEEDIT)
+        {
+            SaveLevel(saveLevelName);
+        }
+        //------------------------------------------------------------------------------------
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerPrefs.SetString("CurrentLevel", "LevelTwo");
+            SceneManager.LoadScene(2);
+        }
+
+    }
+    void CreateCells()
+    {
         for (int i = 0; i < cells.Length; i++)
         {
             cells[i] = Instantiate(cellPrefab, cellParent.transform);
@@ -70,78 +118,75 @@ public class Level : MonoBehaviour
                 cellIndex++;
             }
         }
-        UpdateCameraPosition();
-
-        if (TOGGLEEDIT)
-        {
-            for (int player = 0; player < players.Length; player++)
-            {
-                GameObject.Destroy(players[player].gameObject);
-            }
-
-            mouseCollider = new GameObject("MOUSECOLLIDER");
-            mouseCollider.AddComponent<CircleCollider2D>();
-            mouseCollider.AddComponent<Rigidbody2D>();
-            mouseCollider.tag = "MouseCollider";
-            mouseCollider.GetComponent<CircleCollider2D>().isTrigger = false;
-            mouseCollider.SetActive(true);
-        }
     }
 
-    void Update()
+    void SaveLevel(string levelName)
     {
-
-        if (TOGGLEEDIT)
+        // saveLevel *****************DEPRECIATED(TOO MUCH INVOLVEMENT)
+        if (saveLevel)
         {
-            Vector3 tempPos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            
-            mouseCollider.GetComponent<Rigidbody2D>().MovePosition(new Vector2(tempPos.x, tempPos.y));
-            //if (Input.GetMouseButton(0))
-            //{
-            //    mouseCollider.SetActive(true);
-            //}
-            //else
-            //{
-            //    mouseCollider.SetActive(false);
-            //}
+            string levelData = "";
+            string path = Path.Combine(Application.dataPath, "LevelData\\" + levelName + ".txt");
+            float[][] levelPositions = new float[cells.Length][];
 
-            
-            if (saveLevel)
+            // Only write the cells that are not toggled
+            for (int i = 0; i < cells.Length; i++)
             {
-
-                string levelData = "";
-
-                string path = Path.Combine(Application.persistentDataPath, levelName + ".txt");
-
-                float[][] levelPositions = new float[cells.Length][];
-
-                for (int i = 0; i < cells.Length; i++)
+                if (cells[i].GetComponent<Cell>().isToggled == false)
                 {
-                    if (cells[i].activeSelf)
-                    {
-                        // Writes to file: Index_posX_posY|Index_posX_posY|etc.
-                        levelData += $"{i}('_'){cells[i].transform.position.x}('_'){cells[i].transform.position.y}('|')";
-                        
-                    }
+                    // Writes to file: Index_posX_posY|Index_posX_posY|etc.
+                    levelData += $"{i}-";
                 }
-
-                int cellIndex = 0;
-                for (int row = 0; row < gridSize.y; row++)
-                {
-                    for (int col = 0; col < gridSize.x; col++)
-                    {
-                        Vector2 newPosition = new Vector2(col * cellSize, row * cellSize);
-                        cells[cellIndex].transform.position = newPosition;
-                        cellIndex++;
-                    }
-                }
-                File.WriteAllText(path, levelData);
-                Debug.Log(path);
-                saveLevel = false;
             }
+            File.WriteAllText(path, levelData);
 
+            saveLevel = false;
         }
     }
+
+    void LoadLevel(string levelName)
+    {
+        CreateCells();
+        StreamReader sr = new StreamReader(Application.dataPath + "\\LevelData\\" + levelName + ".txt");
+        string[] tempStrings = sr.ReadToEnd().Split('-');
+        int[] tempInts = new int[tempStrings.Length];
+
+        for (int i = 0; i < tempInts.Length; i++)
+        {
+            int currentVal;
+            string currentChar = tempStrings[i];
+            if (int.TryParse(currentChar, out currentVal))
+            {
+                tempInts[i] = currentVal;
+            }
+        }
+        sr.Close();
+
+        for (int i = 0; i < tempInts.Length; i++)
+        {
+            cells[tempInts[i]].GetComponent<Cell>().isToggled = true;
+        }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].GetComponent<Cell>().isToggled = !cells[i].GetComponent<Cell>().isToggled;
+        }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            if (cells[i].GetComponent<Cell>().isToggled)
+            {
+                cells[i].SetActive(false);
+            }
+        }
+    }
+
+    void ReadLevelData(TextAsset file)
+    {
+        Debug.Log(file.text);
+    }
+
+    
 
     // Set camera position to the midpoint of the grid matrix
     void UpdateCameraPosition()
