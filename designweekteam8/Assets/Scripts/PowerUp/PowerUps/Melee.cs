@@ -10,8 +10,7 @@ public class Melee : PowerUp
     {
         Debug.Log("Melee is in use!");
 
-        //Disable the gun script
-        // Disable melee attack, enable gun attack
+        //Disable the gun script, enable melee script
         player.GetComponent<MeleeWeponMechanic>().enabled = true;
         player.GetComponent<BulletMechanic>().enabled = false;
     }

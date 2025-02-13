@@ -10,10 +10,11 @@ public class MeleeWeponMechanic : MonoBehaviour
 
     private void Start()
     {
+        //Enable this script when first starting 
         this.enabled = true;
         if (weapon == null)
         {
-            weapon = transform.GetChild(0).gameObject;
+            weapon = transform.GetChild(1).gameObject;
         }
         weapon.SetActive(false); //Set weapon collider to false at the start
     }
@@ -26,19 +27,19 @@ public class MeleeWeponMechanic : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) && !isAttacking)
         {
-            StartCoroutine(SwipeAttack(new Vector3(1.2f, 0.8f, 0), new Vector3(1.2f, -0.5f, 0)));
+            StartCoroutine(SwipeAttack(new Vector3(2f, 1f, 0), new Vector3(2f, -0.8f, 0)));
         }
         if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
         {
-            StartCoroutine(SwipeAttack(new Vector3(-1.2f, -0.8f, 0), new Vector3(-1.2f, 0.5f, 0)));
+            StartCoroutine(SwipeAttack(new Vector3(-2f, -1f, 0), new Vector3(-2f, 0.8f, 0)));
         }
         if (Input.GetKeyDown(KeyCode.I) && !isAttacking)
         {
-            StartCoroutine(SwipeAttack(new Vector3(-1.2f, 1f, 0), new Vector3(1.2f, 1f, 0)));
+            StartCoroutine(SwipeAttack(new Vector3(-1.5f, 2f, 0), new Vector3(1.5f, 2f, 0)));
         }
         if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
         {
-            StartCoroutine(SwipeAttack(new Vector3(1.2f, -1f, 0), new Vector3(-1.2f, -1f, 0)));
+            StartCoroutine(SwipeAttack(new Vector3(1.5f, -2f, 0), new Vector3(-1.5f, -2f, 0)));
         }
     }
 
@@ -46,11 +47,12 @@ public class MeleeWeponMechanic : MonoBehaviour
     {
         isAttacking = true; //When this function is called, set is attacking to true
         weapon.SetActive(true);
-        weapon.transform.localPosition = start; //When function is called, set the position of attack collider to start
+        weapon.transform.localPosition = start; //Set initial position
 
         float attackDuration = 0.2f;
         float elapsedTime = 0;
 
+        //Over the duration of the attack, move the collider from start to end position
         while (elapsedTime < attackDuration)
         {
             weapon.transform.localPosition = Vector3.Lerp(start, end, elapsedTime / attackDuration);
@@ -72,60 +74,4 @@ public class MeleeWeponMechanic : MonoBehaviour
         weapon.transform.localPosition = Vector3.zero;
     }
 
-    //[SerializeField] private GameObject weapon;
-    //[SerializeField] private PlayableDirector attack;
-    //private bool isAttacking = false;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    weapon = GetComponentInChildren<GameObject>();
-    //    attack = weapon.GetComponent<PlayableDirector>();
-    //    weapon.SetActive(false);
-    //}
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        RightAttack();
-    //        isAttacking = false;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.A))
-    //    {
-    //        LeftAttack();
-    //        isAttacking = false;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        UpAttack();
-    //        isAttacking = false;
-    //    }
-    //}
-
-    //public void RightAttack()
-    //{
-    //    isAttacking = true;
-    //    weapon.SetActive(true);
-    //    weapon.transform.position = new Vector3(1, 0.8f, 0);
-    //    attack.Play();
-    //}
-
-    //public void LeftAttack()
-    //{
-    //    isAttacking = true;
-    //    weapon.SetActive(true);
-    //    weapon.transform.position = new Vector3(-1, -0.8f, 0);
-    //    attack.Play();
-    //}
-    //public void UpAttack()
-    //{
-    //    weapon.SetActive(true);
-    //    attack.Play();
-    //}
-    //public void DownAttack()
-    //{
-    //    weapon.SetActive(true);
-    //    attack.Play();
-    //}
 }

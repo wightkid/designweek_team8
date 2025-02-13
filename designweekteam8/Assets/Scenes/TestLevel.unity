@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8976606487893006621, guid: 64dc78b548c5cdd4e93c53efbd97e231, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -278,7 +282,7 @@ GameObject:
   - component: {fileID: 767197984}
   m_Layer: 0
   m_Name: AttackCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,6 +473,18 @@ PrefabInstance:
       propertyPath: loadLevelName
       value: levelTest
       objectReference: {fileID: 0}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: players.Array.data[0]
+      value: 
+      objectReference: {fileID: 8976606487893006621, guid: 64dc78b548c5cdd4e93c53efbd97e231, type: 3}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: players.Array.data[1]
+      value: 
+      objectReference: {fileID: 8976606487893006621, guid: 64dc78b548c5cdd4e93c53efbd97e231, type: 3}
+    - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
+      propertyPath: players.Array.data[2]
+      value: 
+      objectReference: {fileID: 8976606487893006621, guid: 64dc78b548c5cdd4e93c53efbd97e231, type: 3}
     - target: {fileID: 8352855436292187971, guid: 7a625f30390b338438b4d5e127374833, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -541,7 +557,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1640275250, guid: b99838bab0fdc484890c9d9c136f95a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -626,6 +642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1434056514}
   - component: {fileID: 1434056513}
+  - component: {fileID: 1434056515}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -700,6 +717,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 691412051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1434056515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434056512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82b7954ff01b5a4a86832eceaf3c48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  melee: {fileID: 0}
+  bullet: {fileID: 0}
+  weaponSprite: {fileID: 1434056513}
+  powerUpSprites:
+  - {fileID: -1640275250, guid: b99838bab0fdc484890c9d9c136f95a0, type: 3}
+  player: {fileID: 2142683445}
+  weapon: {fileID: 1434056512}
 --- !u!1 &2142683445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8976606487893006621, guid: 64dc78b548c5cdd4e93c53efbd97e231, type: 3}
@@ -742,7 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   bulletTimer: 10
-  bullet: {fileID: 8753566423177401990, guid: a8fc1693df1f5c149b8c3eab74236f7b, type: 3}
+  bullet: {fileID: 1255351463752772169, guid: a8fc1693df1f5c149b8c3eab74236f7b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
