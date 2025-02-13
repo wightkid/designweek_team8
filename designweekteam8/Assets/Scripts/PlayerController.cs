@@ -63,11 +63,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void OnPlayerJoined()
-    {
-        Debug.Log("JOINED");
-    }
-
     public void OnMove(InputValue value)
     {
         // Read value from control. The type depends on what type of controls.
