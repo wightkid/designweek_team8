@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,29 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidbody2d;
 
+    // Multiplayer Functionality
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+    private InputAction move;
+
+    private void Awake()
+    {
+        int playerNumber = PlayerPrefs.GetInt("playerNumber");
+
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        player = inputAsset.FindActionMap("Player");
+        gameObject.name = $"Player_{playerNumber}";
+
+        gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
+
+        player.Enable();
+
+        if (playerNumber <= 3)
+        {
+            PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +49,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) UsePowerUp();
         
-        HandleMovement();
+        //HandleMovement();
     }
 
-    
+    private void OnEnable()
+    {
+        move = player.FindAction("Move");
+        
+    }
+
+    private void OnDisable()
+    {
+        player.Disable();
+    }
+
     private void UsePowerUp()
     {
         // Check if player has Power Ups and safety check for if some how secondary Power Up dosen't get set to primary
@@ -53,12 +87,12 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void HandleMovement()
+    private void OnMove(InputValue value)
     {
         // Get player input
-        float inputDirX = Input.GetAxisRaw("Horizontal");
-        float inputDirY = Input.GetAxisRaw("Vertical");
-        Vector2 inputDir = new Vector2(inputDirX, inputDirY);
+        //float inputDirX = Input.GetAxisRaw("Horizontal");
+        //float inputDirY = Input.GetAxisRaw("Vertical");
+        Vector2 inputDir = value.Get<Vector2>();
         
         // Normalize and calculate the 'wish velocity'
         Vector2 direction = inputDir.normalized;
