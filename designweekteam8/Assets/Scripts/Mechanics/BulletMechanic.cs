@@ -47,6 +47,7 @@ public class BulletMechanic : MonoBehaviour
 
     public void BulletDirection(Vector2 direction)
     {
+        //Generate the bullet in the scene when this function is called 
         GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
         Rigidbody2D bulletRB = newBullet.GetComponent<Rigidbody2D>();
 

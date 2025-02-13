@@ -14,10 +14,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidbody2d;
 
+    //Sprites
+    public SpriteRenderer playerSprite;
+    public Sprite[] otherSprites;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -70,6 +75,32 @@ public class PlayerController : MonoBehaviour
 
         // Add new velocity to rigidbody
         rigidbody2d.velocity = new Vector2(velocityX, velocityY);
+
+        //Change the sprite depending the direction of player
+        ChangeSprite(direction);
     }
 
+    private void ChangeSprite(Vector2 direction)
+    {
+        if (direction.x > 0)
+        {
+            playerSprite.sprite = otherSprites[1];
+            playerSprite.flipX = false;
+        }
+        if (direction.x < 0)
+        {
+            playerSprite.sprite = otherSprites[1];
+            playerSprite.flipX = true;
+        }
+        if (direction.y > 0)
+        {
+            playerSprite.sprite = otherSprites[2];
+            playerSprite.flipY = false;
+        }
+        if (direction.y < 0)
+        {
+            playerSprite.sprite = otherSprites[0];
+            playerSprite.flipY = false;
+        }
+    }
 }
