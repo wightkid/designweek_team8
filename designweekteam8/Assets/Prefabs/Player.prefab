@@ -252,9 +252,6 @@ GameObject:
   - component: {fileID: 6578289256308001509}
   - component: {fileID: 8579783264579767450}
   - component: {fileID: -367428748746711548}
-  - component: {fileID: 3037851988003438588}
-  - component: {fileID: 5563430878195975482}
-  - component: {fileID: 6406816494127763251}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -427,6 +424,25 @@ MonoBehaviour:
   secondaryPowerUp: {fileID: 0}
   moveSpeed: 10
   moveAccel: 15
+  currentPlayerCharacter: 0
+  currentPlayerDirection: 0
+  playerSpritesheet:
+  - {fileID: -1808573042, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -767976780, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 603388571, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 1466528436, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -477839278, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -275249312, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 531577829, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 307687039, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -1920746032, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -1908306245, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 2093046107, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 1179071748, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  otherSprites: []
+  weaponSprite: {fileID: 0}
+  powerUpSprite: []
+  weapon: {fileID: 0}
 --- !u!114 &-367428748746711548
 MonoBehaviour:
   m_ObjectHideFlags: 0
