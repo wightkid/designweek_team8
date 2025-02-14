@@ -47,10 +47,7 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(gameTimer % 60);
 
         timerText.text = $"Time Remaining: {minutes}:{seconds}";
-        scoreText.text = $"Player Score: {playerCoins[0]}\n" +
-            $"Player Score: {playerCoins[1]}\n" +
-            $"Player Score: {playerCoins[2]}\n" +
-            $"Player Score: {playerCoins[3]}\n";
+        scoreText.text = $"Player Score: {playerCoins[0]}";
     }
 
     void UpdateScores(GameObject[] playerObjects)

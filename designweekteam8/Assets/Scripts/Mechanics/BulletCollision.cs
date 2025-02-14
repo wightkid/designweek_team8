@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BulletCollision : MonoBehaviour
 {
+    PlayerStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        stats = FindAnyObjectByType<PlayerStats>();   
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class BulletCollision : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && collision.gameObject != this.gameObject)
         {
+            stats.health--;
             Destroy(gameObject);
         }
 
