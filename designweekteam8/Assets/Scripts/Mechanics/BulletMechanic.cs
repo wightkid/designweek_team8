@@ -9,7 +9,24 @@ public class BulletMechanic : MonoBehaviour
     private Rigidbody2D rb2D;
     public float bulletTimer = 10f;
     public GameObject bullet;
+    private InputActionAsset inputactions;
+    private InputActionMap inputmap;
+    private InputAction attackup;
+    private InputAction attackdown;
+    private InputAction attackleft;
+    private InputAction attackright;
 
+
+    //private void Awake()
+    //{
+    //    inputactions = this.GetComponent<PlayerInput>().actions;
+    //    inputmap = inputactions.FindActionMap("player");
+
+    //    attackup = inputmap.FindAction("AttackUp");
+    //    attackdown = inputmap.FindAction("AttackDown");
+    //    attackleft = inputmap.FindAction("AttackLeft");
+    //    attackright = inputmap.FindAction("AttackRight");
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +39,7 @@ public class BulletMechanic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BulletFiring();        
+        BulletFiring();
     }
 
     public void BulletFiring()
@@ -56,7 +73,7 @@ public class BulletMechanic : MonoBehaviour
         Rigidbody2D bulletRB = newBullet.GetComponent<Rigidbody2D>();
 
 
-        if(bulletRB != null )
+        if (bulletRB != null)
         {
             bulletRB.velocity = direction * bulletSpeed;
         }
