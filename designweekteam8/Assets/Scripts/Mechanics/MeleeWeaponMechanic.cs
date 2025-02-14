@@ -49,7 +49,7 @@ public class MeleeWeponMechanic : MonoBehaviour
         attackCollider.SetActive(true);
         attackCollider.transform.localPosition = start; //Set initial position
 
-        float attackDuration = 0.2f;
+        float attackDuration = 0.1f;
         float elapsedTime = 0;
 
         //Over the duration of the attack, move the collider from start to end position

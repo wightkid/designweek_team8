@@ -45,8 +45,16 @@ public class Cell : MonoBehaviour
             Destroy();
         }
         */
+        if (collision.gameObject.tag == "Landmine")
+        {
+            Destroy();
+        }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+    }
     private void Update()
     {
         sr.enabled = !isToggled;

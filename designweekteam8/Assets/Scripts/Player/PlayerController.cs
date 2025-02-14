@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     // Movement
     public float moveSpeed = 10.0f;
-    public float moveAccel = 15.0f;
+    public float moveAccel = 5.0f;
 
     [SerializeField]
     private playerCharacter currentPlayerCharacter = playerCharacter.One;
@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
+    Vector2 inputDir;
+
+    // Landmine
+    public GameObject landminePrefab;
 
     private void Awake()
     {
@@ -78,10 +82,10 @@ public class PlayerController : MonoBehaviour
         int spriteIndex = (int)playerDirections.Down + (int)currentPlayerCharacter;
 
         // Debug logs to check values
-        Debug.Log($"playerDirections.Down: {(int)playerDirections.Down}");
-        Debug.Log($"currentPlayerCharacter: {(int)currentPlayerCharacter}");
-        Debug.Log($"Calculated spriteIndex: {spriteIndex}");
-        Debug.Log($"playerSpritesheet.Length: {playerSpritesheet.Length}");
+        //Debug.Log($"playerDirections.Down: {(int)playerDirections.Down}");
+        //Debug.Log($"currentPlayerCharacter: {(int)currentPlayerCharacter}");
+        //Debug.Log($"Calculated spriteIndex: {spriteIndex}");
+        //Debug.Log($"playerSpritesheet.Length: {playerSpritesheet.Length}");
 
         // Check if the index is within the bounds of the array
         if (spriteIndex >= 0 && spriteIndex < playerSpritesheet.Length)
@@ -101,13 +105,30 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) UsePowerUp();
 
+        // Normalize and calculate the 'wish velocity'
+        Vector2 direction = inputDir.normalized;
+        HandlePlayerSprite(direction);
+        Vector2 wishVelocity = direction * moveSpeed;
+
+        // Interpolate smoothly between prev velocity and wish velocity
+        float velocityX = Mathf.Lerp(rigidbody2d.velocity.x, wishVelocity.x, moveAccel * Time.deltaTime);
+        float velocityY = Mathf.Lerp(rigidbody2d.velocity.y, wishVelocity.y, moveAccel * Time.deltaTime);
+
+        // Add new velocity to rigidbody
+        rigidbody2d.velocity = new Vector2(velocityX, velocityY);
         //HandleMovement();
+
+        // Landmine
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject landmine = Object.Instantiate(landminePrefab);
+            landmine.transform.position = transform.position;
+        }
     }
 
     private void OnEnable()
     {
         move = player.FindAction("Move");
-
     }
 
     private void OnDisable()
@@ -142,21 +163,7 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue value)
     {
         // Get player input
-        //float inputDirX = Input.GetAxisRaw("Horizontal");
-        //float inputDirY = Input.GetAxisRaw("Vertical");
-        Vector2 inputDir = value.Get<Vector2>();
-
-        // Normalize and calculate the 'wish velocity'
-        Vector2 direction = inputDir.normalized;
-        HandlePlayerSprite(direction);
-        Vector2 wishVelocity = direction * moveSpeed;
-
-        // Interpolate smoothly between prev velocity and wish velocity
-        float velocityX = Mathf.Lerp(rigidbody2d.velocity.x, wishVelocity.x, moveAccel * Time.deltaTime);
-        float velocityY = Mathf.Lerp(rigidbody2d.velocity.y, wishVelocity.y, moveAccel * Time.deltaTime);
-
-        // Add new velocity to rigidbody
-        rigidbody2d.velocity = new Vector2(velocityX, velocityY);
+        inputDir = value.Get<Vector2>();
     }
 
     private void HandlePlayerSprite(Vector2 inputDirection)
@@ -176,7 +183,5 @@ public class PlayerController : MonoBehaviour
         }
 
         spriteRenderer.sprite = playerSpritesheet[(int)currentPlayerDirection + (int)currentPlayerCharacter];
-
-
     }
 }
