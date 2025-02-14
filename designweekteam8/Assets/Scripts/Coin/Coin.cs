@@ -29,6 +29,7 @@ public class Coin : MonoBehaviour
         if (playerStats == null) return;
 
         playerStats.PickUpCoin(this);
+        GameObject.Destroy(this.gameObject);
     }
 
     private void UpdateSprite()

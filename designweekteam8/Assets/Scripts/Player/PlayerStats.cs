@@ -58,6 +58,7 @@ public class PlayerStats : MonoBehaviour
         playerAudioSource.clip = playerCoinPickedUpAudio;
         playerAudioSource.Play();
 
+
         Destroy(coin.gameObject);
     }
 

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerCoins = new int[1];
+        //players = new GameObject[1];
         gameTimer = gameTimerMax;
         ResetScores();
         ResetTimer();
@@ -46,11 +47,9 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(gameTimer / 60);
         int seconds = Mathf.FloorToInt(gameTimer % 60);
 
+        // Debug.Log($"{minutes}, {seconds}");
         timerText.text = $"Time Remaining: {minutes}:{seconds}";
-        scoreText.text = $"Player Score: {playerCoins[0]}\n" +
-            $"Player Score: {playerCoins[1]}\n" +
-            $"Player Score: {playerCoins[2]}\n" +
-            $"Player Score: {playerCoins[3]}\n";
+        scoreText.text = $"Player Score: {playerCoins[0]}";
     }
 
     void UpdateScores(GameObject[] playerObjects)
