@@ -30,40 +30,11 @@ public class PlayerController : MonoBehaviour
     {
         int playerNumber = PlayerPrefs.GetInt("playerNumber");
 
-        PlayerInput playerInput = GetComponent<PlayerInput>();
-        if (playerInput == null)
-        {
-            Debug.LogError("PlayerInput component is missing on " + gameObject.name);
-            return;
-        }
-
-        inputAsset = playerInput.actions;
-
-        // Ensure inputAsset isn't null before using it
-        if (inputAsset == null)
-        {
-            Debug.LogError("InputActionAsset is missing in PlayerInput on " + gameObject.name);
-            return;
-        }
-
+        inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
-        if (player == null)
-        {
-            Debug.LogError("ActionMap 'Player' not found in InputActionAsset.");
-            return;
-        }
-
         gameObject.name = $"Player_{playerNumber}";
 
-        Transform spawnLocationParent = GameObject.Find("Spawn Locations")?.transform;
-        if (spawnLocationParent != null && spawnLocationParent.childCount > playerNumber)
-        {
-            gameObject.transform.position = spawnLocationParent.GetChild(playerNumber).position;
-        }
-        else
-        {
-            Debug.LogError("Spawn location not found for player " + playerNumber);
-        }
+        gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
 
         player.Enable();
 
@@ -72,25 +43,6 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
         }
     }
-
-
-    //private void Awake()
-    //{
-    //    int playerNumber = PlayerPrefs.GetInt("playerNumber");
-
-    //    inputAsset = this.GetComponent<PlayerInput>().actions;
-    //    player = inputAsset.FindActionMap("Player");
-    //    gameObject.name = $"Player_{playerNumber}";
-
-    //    gameObject.transform.position = GameObject.Find("Spawn Locations").transform.GetChild(playerNumber).position;
-
-    //    player.Enable();
-
-    //    if (playerNumber <= 3)
-    //    {
-    //        PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
-    //    }
-    //}
 
     // Start is called before the first frame update
     void Start()
