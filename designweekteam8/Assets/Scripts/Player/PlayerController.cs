@@ -7,19 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     private enum playerCharacter
     {
-        One, 
-        Two,    
-        Three, 
+        One,
+        Two,
+        Three,
         Four
     }
-    
+
     private enum playerDirections
     {
-        Up = 4, 
-        Down = 0, 
+        Up = 4,
+        Down = 0,
         Side = 8,
     }
-    
+
     // Power-Ups
     public PowerUp primaryPowerUp;
     public PowerUp secondaryPowerUp;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public float moveAccel = 15.0f;
 
     [SerializeField]
-    private playerCharacter currentPlayerCharacter = playerCharacter.One; 
+    private playerCharacter currentPlayerCharacter = playerCharacter.One;
     [SerializeField]
     private playerDirections currentPlayerDirection = playerDirections.Down;
 
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer weaponSprite;
     public Sprite[] powerUpSprite;
     [SerializeField] private GameObject weapon;
-    
+
     // Multiplayer Functionality
     private InputActionAsset inputAsset;
     private InputActionMap player;
@@ -73,7 +73,25 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = playerSpritesheet[(int)playerDirections.Down + (int)currentPlayerCharacter];
+
+        // Calculate the index for the sprite
+        int spriteIndex = (int)playerDirections.Down + (int)currentPlayerCharacter;
+
+        // Debug logs to check values
+        Debug.Log($"playerDirections.Down: {(int)playerDirections.Down}");
+        Debug.Log($"currentPlayerCharacter: {(int)currentPlayerCharacter}");
+        Debug.Log($"Calculated spriteIndex: {spriteIndex}");
+        Debug.Log($"playerSpritesheet.Length: {playerSpritesheet.Length}");
+
+        // Check if the index is within the bounds of the array
+        if (spriteIndex >= 0 && spriteIndex < playerSpritesheet.Length)
+        {
+            spriteRenderer.sprite = playerSpritesheet[spriteIndex];
+        }
+        else
+        {
+            Debug.LogWarning($"Sprite index {spriteIndex} is out of bounds for playerSpritesheet array.");
+        }
 
         if (weapon != null) weaponSprite = weapon.GetComponent<SpriteRenderer>();
     }
@@ -89,7 +107,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         move = player.FindAction("Move");
-        
+
     }
 
     private void OnDisable()
@@ -114,20 +132,20 @@ public class PlayerController : MonoBehaviour
         primaryPowerUp = null;
 
         // After successful use of primary Power Up move secondary to primary
-        if (secondaryPowerUp) 
+        if (secondaryPowerUp)
         {
             primaryPowerUp = secondaryPowerUp;
             secondaryPowerUp = null;
         }
     }
-    
+
     private void OnMove(InputValue value)
     {
         // Get player input
         //float inputDirX = Input.GetAxisRaw("Horizontal");
         //float inputDirY = Input.GetAxisRaw("Vertical");
         Vector2 inputDir = value.Get<Vector2>();
-        
+
         // Normalize and calculate the 'wish velocity'
         Vector2 direction = inputDir.normalized;
         HandlePlayerSprite(direction);
