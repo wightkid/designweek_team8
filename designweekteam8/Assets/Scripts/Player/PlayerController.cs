@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     public Sprite[] playerSpritesheet;
     private SpriteRenderer spriteRenderer;
 
+    public Sprite[] otherSprites;
+    public SpriteRenderer weaponSprite;
+    public Sprite[] powerUpSprite;
+    [SerializeField] private GameObject weapon;
+    
     // Multiplayer Functionality
     private InputActionAsset inputAsset;
     private InputActionMap player;
@@ -68,8 +73,9 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         spriteRenderer.sprite = playerSpritesheet[(int)playerDirections.Down + (int)currentPlayerCharacter];
+
+        if (weapon != null) weaponSprite = weapon.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
