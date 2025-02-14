@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        spriteRenderer.sprite = playerSpritesheet[0];
+        spriteRenderer.sprite = playerSpritesheet[(int)playerDirections.Down + (int)currentPlayerCharacter];
     }
 
     // Update is called once per frame
@@ -152,7 +152,6 @@ public class PlayerController : MonoBehaviour
         }
 
         spriteRenderer.sprite = playerSpritesheet[(int)currentPlayerDirection + (int)currentPlayerCharacter];
-        Debug.Log($"{currentPlayerDirection} {currentPlayerCharacter}");
 
 
     }

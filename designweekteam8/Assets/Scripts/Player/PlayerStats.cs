@@ -65,7 +65,8 @@ public class PlayerStats : MonoBehaviour
         // Make the money the player is supposed to drop the value of the coin
         Coin coinScript = coinPrefab.GetComponent<Coin>();
         coinScript.value = money * dropPercentage;
-        money = (resetMoneyOnDeath) ? 0 : money; // Reset money if bool is true, otherwise just keep it the same
+        money = (resetMoneyOnDeath) ? 0 : money - coinScript.value; // Reset money if bool is true, otherwise just subtract money dropped
+        coinScript.playerDropped = true;
 
         // Instantiate dropped coin
         GameObject coinInstance = Instantiate(coinScript.gameObject);

@@ -193,8 +193,8 @@ MonoBehaviour:
   secondaryPowerUp: {fileID: 0}
   moveSpeed: 10
   moveAccel: 15
-  currentPlayerCharacter: 1
-  currentPlayerDirection: 1
+  currentPlayerCharacter: 0
+  currentPlayerDirection: 0
   playerSpritesheet:
   - {fileID: -1808573042, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
   - {fileID: -767976780, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
