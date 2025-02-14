@@ -47,7 +47,12 @@ public class BulletMechanic : MonoBehaviour
 
     public void BulletDirection(Vector2 direction)
     {
-        GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        float offsetDistance = 1f;
+
+        Vector2 spawnPosition = (Vector2)transform.position + (direction * offsetDistance);
+
+        //Generate the bullet in the scene when this function is called 
+        GameObject newBullet = Instantiate(bullet, spawnPosition, Quaternion.identity);
         Rigidbody2D bulletRB = newBullet.GetComponent<Rigidbody2D>();
 
 

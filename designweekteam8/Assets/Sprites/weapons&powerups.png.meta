@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20a57c6580dfe344cb03a03d0c043934
+guid: b99838bab0fdc484890c9d9c136f95a0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player spritesheet_0
+      name: weapons&powerups_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 788
-        width: 259
-        height: 333
+        x: 82
+        y: 429
+        width: 106
+        height: 287
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2db089e1ed484724c9848ead0b891ed2
-      internalID: -1199615576
+      spriteID: 5e0c966a0e52af74ba10e69066cd7fed
+      internalID: -1584226104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_1
+      name: weapons&powerups_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 788
-        width: 259
-        height: 321
+        x: 269
+        y: 596
+        width: 390
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff46ef51cbb173e4ea65a733246d2be8
-      internalID: 42140939
+      spriteID: 8e615e6ffb909524d968f5e70de23134
+      internalID: -1640275250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_2
+      name: weapons&powerups_4
       rect:
         serializedVersion: 2
-        x: 554
-        y: 788
-        width: 259
-        height: 329
+        x: 187
+        y: 503
+        width: 140
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43d6022a34cb27441a062b822cc224b8
-      internalID: -800717552
+      spriteID: 1acfc5d1a6f13d54f809f458350db64d
+      internalID: -176411305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_3
+      name: weapons&powerups_5
       rect:
         serializedVersion: 2
-        x: 817
-        y: 788
-        width: 259
-        height: 358
+        x: 466
+        y: 458
+        width: 61
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6da9f28368b5c1c4c9b46dbf41bae891
-      internalID: 1735471488
+      spriteID: 3f33a18addba10c459c645406bb3bbc1
+      internalID: 2026167581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_4
+      name: weapons&powerups_7
       rect:
         serializedVersion: 2
-        x: 9
-        y: 438
-        width: 259
-        height: 327
+        x: 25
+        y: 264
+        width: 123
+        height: 153
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7101871ea9e673b43ad739a257de0d84
-      internalID: 310942643
+      spriteID: 78f4c6fbc5bc92e499550284bb864648
+      internalID: -1178147103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_5
+      name: weapons&powerups_8
       rect:
         serializedVersion: 2
-        x: 272
-        y: 438
-        width: 259
-        height: 321
+        x: 239
+        y: 325
+        width: 194
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3b9f05eea6bcf14ba6332d61bc8c432
-      internalID: -734956401
+      spriteID: 20e7f6aa88bf0474b92fd0792de59951
+      internalID: 2051884399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_6
+      name: weapons&powerups_9
       rect:
         serializedVersion: 2
-        x: 554
-        y: 438
-        width: 259
-        height: 335
+        x: 532
+        y: 332
+        width: 154
+        height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 961b9546b4a81e241be86b86f8c17a40
-      internalID: 1651777348
+      spriteID: a13ff82b747b74a49b79d05ffef12973
+      internalID: -750547225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_7
+      name: weapons&powerups_10
       rect:
         serializedVersion: 2
-        x: 820
-        y: 422
-        width: 259
-        height: 361
+        x: 136
+        y: 176
+        width: 342
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61a6753fd6f285d4c8839a1e5cdc5f60
-      internalID: 721360218
+      spriteID: 3f5a188e659fabf46be782152662a77d
+      internalID: 1140300189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_8
+      name: weapons&powerups_14
       rect:
         serializedVersion: 2
-        x: 51
-        y: 57
-        width: 207
-        height: 332
+        x: 599
+        y: 142
+        width: 127
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +279,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea9256a225d1df47b4e5500ca212ffb
-      internalID: 1145769853
+      spriteID: f283a5aaa31cc9246b682da8e124234a
+      internalID: 1093209097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_9
+      name: weapons&powerups_16
       rect:
         serializedVersion: 2
-        x: 313
-        y: 48
-        width: 188
-        height: 330
+        x: 50
+        y: 82
+        width: 139
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,20 +300,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca1cb19b00f736447a0fbaa11cabc6f9
-      internalID: 669211502
+      spriteID: af894805d88d2fa46af0215cfdc9b301
+      internalID: 1079723854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_10
+      name: weapons&powerups_17
       rect:
         serializedVersion: 2
-        x: 590
+        x: 211
         y: 46
-        width: 207
-        height: 341
+        width: 90
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,20 +321,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58489e5934a0f8d4da3f3da69fa0af3a
-      internalID: 1085561138
+      spriteID: 4aac439f9af932749baf0a63eba59bba
+      internalID: -1538895138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player spritesheet_11
+      name: weapons&powerups_18
       rect:
         serializedVersion: 2
-        x: 869
-        y: 44
-        width: 191
-        height: 359
+        x: 354
+        y: 45
+        width: 102
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,8 +342,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83adf52620d277e4ca5ce2927ef0a237
-      internalID: 1240189761
+      spriteID: ff3f84caffe73794eaf358a4a01aedff
+      internalID: -364583168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapons&powerups_20
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 5
+        width: 90
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9dc6719846f4e8498c34fcdbfbf6315
+      internalID: -1597461752
       vertices: []
       indices: 
       edges: []
@@ -359,18 +380,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player spritesheet_0: -1199615576
-      player spritesheet_1: 42140939
-      player spritesheet_10: 1085561138
-      player spritesheet_11: 1240189761
-      player spritesheet_2: -800717552
-      player spritesheet_3: 1735471488
-      player spritesheet_4: 310942643
-      player spritesheet_5: -734956401
-      player spritesheet_6: 1651777348
-      player spritesheet_7: 721360218
-      player spritesheet_8: 1145769853
-      player spritesheet_9: 669211502
+      weapons&powerups_0: -1584226104
+      weapons&powerups_1: -1640275250
+      weapons&powerups_10: 1140300189
+      weapons&powerups_11: 1584016245
+      weapons&powerups_12: -270448784
+      weapons&powerups_13: 659654350
+      weapons&powerups_14: 1093209097
+      weapons&powerups_15: -667941251
+      weapons&powerups_16: 1079723854
+      weapons&powerups_17: -1538895138
+      weapons&powerups_18: -364583168
+      weapons&powerups_19: -205574584
+      weapons&powerups_2: -712876496
+      weapons&powerups_20: -1597461752
+      weapons&powerups_21: 2107893844
+      weapons&powerups_22: 1022800666
+      weapons&powerups_3: -1593063773
+      weapons&powerups_4: -176411305
+      weapons&powerups_5: 2026167581
+      weapons&powerups_6: -208382709
+      weapons&powerups_7: -1178147103
+      weapons&powerups_8: 2051884399
+      weapons&powerups_9: -750547225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
