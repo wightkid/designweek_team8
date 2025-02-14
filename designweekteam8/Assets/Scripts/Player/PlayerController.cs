@@ -108,17 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) UsePowerUp();
 
-        // Normalize and calculate the 'wish velocity'
-        Vector2 direction = inputDir.normalized;
-        HandlePlayerSprite(direction);
-        Vector2 wishVelocity = direction * moveSpeed;
 
-        // Interpolate smoothly between prev velocity and wish velocity
-        float velocityX = Mathf.Lerp(rigidbody2d.velocity.x, wishVelocity.x, moveAccel * Time.deltaTime);
-        float velocityY = Mathf.Lerp(rigidbody2d.velocity.y, wishVelocity.y, moveAccel * Time.deltaTime);
-
-        // Add new velocity to rigidbody
-        rigidbody2d.velocity = new Vector2(velocityX, velocityY);
         //HandleMovement();
 
         // Landmine
@@ -167,6 +157,17 @@ public class PlayerController : MonoBehaviour
     {
         // Get player input
         inputDir = value.Get<Vector2>();
+        // Normalize and calculate the 'wish velocity'
+        Vector2 direction = inputDir.normalized;
+        HandlePlayerSprite(direction);
+        Vector2 wishVelocity = direction * moveSpeed;
+
+        // Interpolate smoothly between prev velocity and wish velocity
+        float velocityX = Mathf.Lerp(rigidbody2d.velocity.x, wishVelocity.x, moveAccel * Time.deltaTime);
+        float velocityY = Mathf.Lerp(rigidbody2d.velocity.y, wishVelocity.y, moveAccel * Time.deltaTime);
+
+        // Add new velocity to rigidbody
+        rigidbody2d.velocity = new Vector2(velocityX, velocityY);
     }
 
     private void HandlePlayerSprite(Vector2 inputDirection)

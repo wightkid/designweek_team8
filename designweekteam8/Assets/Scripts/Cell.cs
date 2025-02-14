@@ -65,7 +65,7 @@ public class Cell : MonoBehaviour
     {
         int chance = Random.Range(0, 100);
         int itemIndex = Random.Range(0, deliverablePrefabs.Length);
-        if (chance > 2)
+        if (chance > 60)
         {
             GameObject deliverable = Instantiate(deliverablePrefabs[itemIndex], gameObject.transform.position, Quaternion.identity);
             deliverable.transform.SetParent(deliverableParent.transform);
