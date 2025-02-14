@@ -20,9 +20,18 @@ public class PlayerController : MonoBehaviour
     private InputActionMap player;
     private InputAction move;
 
+    public bool isTestScene = false;
+
     private void Awake()
     {
+
         int playerNumber = PlayerPrefs.GetInt("playerNumber");
+
+        if (isTestScene)
+        {
+            playerNumber = 1;
+        }
+
 
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
@@ -42,6 +51,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+
     }
 
     // Update is called once per frame

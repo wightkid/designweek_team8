@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         // Removed due to Start on gamepad = kill player -bc
-        //if (Input.GetKeyDown(KeyCode.Escape)) Kill();
+        if (Input.GetKeyDown(KeyCode.Escape)) Kill();
     }
 
     public void Damage(int damage) 

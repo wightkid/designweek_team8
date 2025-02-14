@@ -1,22 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
-    int player1_coins = 0;
-    int player2_coins = 0;
-    int player3_coins = 0;
-    int player4_coins = 0;
-
+    int[] playerCoins;
     float gameTimer = 0f;
-    float gameTimerMax = 300f;
-
+    public float gameTimerMax = 300f;
     bool pauseTimer = false;
 
-    GameObject[] players;
+    public int timerEndSceneNumber = 4;
 
     [SerializeField]
     TextMeshPro scoreText;
@@ -24,11 +21,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshPro timerText;
 
+    [SerializeField]
+    GameObject[] players;
+
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        playerCoins = new int[players.Length];
+        gameTimer = gameTimerMax;
         ResetScores();
         ResetTimer();
     }
@@ -40,14 +41,30 @@ public class GameManager : MonoBehaviour
         {
             UpdateTimer();
         }
+
+        UpdateScores(players);
+
+        int minutes = Mathf.FloorToInt(gameTimer / 60);
+        int seconds = Mathf.FloorToInt(gameTimer % 60);
+
+        timerText.text = $"Time Remaining: {minutes}:{seconds}";
+        scoreText.text = $"Player Score: {playerCoins[0]}";
+    }
+
+    void UpdateScores(GameObject[] playerObjects)
+    {
+        for (int i = 0; i < playerObjects.Length; i++)
+        {
+            playerCoins[i] = (int)playerObjects[i].GetComponent<PlayerStats>().money;
+        }
     }
 
     void ResetScores()
     {
-        player1_coins = 0;
-        player2_coins = 0;
-        player3_coins = 0;
-        player4_coins = 0;
+        for (int i = 0; i < playerCoins.Length;i++)
+        {
+            playerCoins[0] = 0;
+        }
     }
 
     void ResetTimer()
@@ -67,6 +84,6 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-
+        SceneManager.LoadScene(4);
     }
 }
