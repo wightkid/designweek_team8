@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
     TextMeshPro timerText;
 
     [SerializeField]
-    GameObject[] players;
+    public GameObject[] players;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCoins = new int[players.Length];
+        playerCoins = new int[1];
         gameTimer = gameTimerMax;
         ResetScores();
         ResetTimer();
@@ -47,7 +47,10 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(gameTimer % 60);
 
         timerText.text = $"Time Remaining: {minutes}:{seconds}";
-        scoreText.text = $"Player Score: {playerCoins[0]}";
+        scoreText.text = $"Player Score: {playerCoins[0]}\n" +
+            $"Player Score: {playerCoins[1]}\n" +
+            $"Player Score: {playerCoins[2]}\n" +
+            $"Player Score: {playerCoins[3]}\n";
     }
 
     void UpdateScores(GameObject[] playerObjects)

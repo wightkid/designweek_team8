@@ -24,7 +24,6 @@ public class Cell : MonoBehaviour
         Physics2D.queriesHitTriggers = true;
     }
 
-
     private void OnMouseDown()
     {
         // Only allow toggling sprite renderer of a cell if isEditing is enabled
@@ -36,15 +35,17 @@ public class Cell : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /* 
-        // Temproary player collision with cells
+        
+        /*// Temproary player collision with cells
         if (collision.gameObject.tag == "Player")
         {
             GameObject deliverable = Instantiate(deliverablePrefabs[0], gameObject.transform.position, Quaternion.identity);
             deliverable.transform.SetParent(deliverableParent.transform);
             Destroy();
-        }
-        */
+        }*/
+        
+
+
         if (collision.gameObject.tag == "Landmine")
         {
             Destroy();
@@ -60,6 +61,16 @@ public class Cell : MonoBehaviour
         sr.enabled = !isToggled;
     }
 
+    public void DropDeliverable()
+    {
+        int chance = Random.Range(0, 100);
+        int itemIndex = Random.Range(0, deliverablePrefabs.Length);
+        if (chance > 2)
+        {
+            GameObject deliverable = Instantiate(deliverablePrefabs[itemIndex], gameObject.transform.position, Quaternion.identity);
+            deliverable.transform.SetParent(deliverableParent.transform);
+        }
+    }
 
     void Destroy()
     {

@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
         {
             PlayerPrefs.SetInt("playerNumber", playerNumber + 1);
         }
+        
+        //GameObject.Find("GameManager").GetComponent<GameManager>().players[playerNumber - 1] = this.gameObject;
+        //currentPlayerCharacter = 
     }
 
     // Start is called before the first frame update

@@ -8,6 +8,7 @@ public class AttackCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cell"))
         {
+            collision.gameObject.GetComponent<Cell>().DropDeliverable();
             Destroy(collision.gameObject);
         }
     }
