@@ -816,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
       propertyPath: TOGGLEEDIT
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7965008521539248307, guid: 7a625f30390b338438b4d5e127374833, type: 3}
       propertyPath: players.Array.data[0]
