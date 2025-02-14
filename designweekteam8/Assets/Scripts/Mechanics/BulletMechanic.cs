@@ -17,16 +17,16 @@ public class BulletMechanic : MonoBehaviour
     private InputAction attackright;
 
 
-    //private void Awake()
-    //{
-    //    inputactions = this.GetComponent<PlayerInput>().actions;
-    //    inputmap = inputactions.FindActionMap("player");
+    private void Awake()
+    {
+        inputactions = this.GetComponent<PlayerInput>().actions;
+        inputmap = inputactions.FindActionMap("player");
 
-    //    attackup = inputmap.FindAction("AttackUp");
-    //    attackdown = inputmap.FindAction("AttackDown");
-    //    attackleft = inputmap.FindAction("AttackLeft");
-    //    attackright = inputmap.FindAction("AttackRight");
-    //}
+        attackup = inputmap.FindAction("AttackUp");
+        attackdown = inputmap.FindAction("AttackDown");
+        attackleft = inputmap.FindAction("AttackLeft");
+        attackright = inputmap.FindAction("AttackRight");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,31 +36,83 @@ public class BulletMechanic : MonoBehaviour
         this.enabled = false; //Start disabled. Players start with melee
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        BulletFiring();
+        attackup.performed += onattackup;
+        attackdown.performed += onattackdown;
+        attackleft.performed += onattackleft;
+        attackright.performed += onattackright;
+
+        inputmap.Enable();
     }
 
-    public void BulletFiring()
+    private void OnDisable()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            BulletDirection(Vector2.right);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            BulletDirection(Vector2.left);
-        }
-        if (Input.GetKeyDown(KeyCode.I))
+        attackup.performed -= onattackup;
+        attackdown.performed -= onattackdown;
+        attackleft.performed -= onattackleft;
+        attackright.performed -= onattackright;
+
+        inputmap.Disable();
+    }
+
+    private void onattackup(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             BulletDirection(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.K))
+    }
+
+    private void onattackdown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             BulletDirection(Vector2.down);
         }
     }
+
+    private void onattackleft(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            BulletDirection(Vector2.left);
+        }
+    }
+
+    private void onattackright(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            BulletDirection(Vector2.right);
+        }
+    }
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    BulletFiring();
+    //}
+
+    //public void BulletFiring()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        BulletDirection(Vector2.right);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.J))
+    //    {
+    //        BulletDirection(Vector2.left);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        BulletDirection(Vector2.up);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        BulletDirection(Vector2.down);
+    //    }
+    //}
 
     public void BulletDirection(Vector2 direction)
     {

@@ -85,8 +85,12 @@ public class MeleeWeponMechanic : MonoBehaviour
     private InputAction attackleft;
     private InputAction attackright;
 
+    PlayerStats playerstats;
+
     private void Awake()
     {
+        playerstats = FindAnyObjectByType<PlayerStats>();
+
         inputactions = this.GetComponent<PlayerInput>().actions;
         inputmap = inputactions.FindActionMap("player");
 
@@ -181,6 +185,15 @@ public class MeleeWeponMechanic : MonoBehaviour
 
         resetweaponposition();
         isattacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerstats.health--;
+            collision.gameObject.transform.position = Vector2.right;
+        }
     }
 
     private void resetweaponposition()

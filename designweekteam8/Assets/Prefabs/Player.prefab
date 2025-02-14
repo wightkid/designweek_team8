@@ -265,7 +265,6 @@ GameObject:
   - component: {fileID: 6578289256308001509}
   - component: {fileID: 8579783264579767450}
   - component: {fileID: -367428748746711548}
-  - component: {fileID: 5348405947361738741}
   - component: {fileID: 1377333402245282130}
   m_Layer: 6
   m_Name: Player
@@ -483,27 +482,44 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5298c441-53c9-48c0-b749-273d6242560d
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fa90bc41-2c76-4fad-8f4d-b282ce70228a
+    m_ActionName: Player/Join[/Keyboard/anyKey,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c9ba05e-4988-4000-a126-5a7af2871af4
+    m_ActionName: Player/UsePowerup[/Keyboard/end,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 84496c79-4ad9-46c0-8700-0dcb10f34a99
+    m_ActionName: Player/AttackUp[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f31e7890-0b57-4730-9959-6a2495a376d4
+    m_ActionName: Player/AttackDown[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 142643d2-4068-4660-b692-9dcb3325fdf5
+    m_ActionName: Player/AttackRight[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 040b6181-375e-439a-831e-1b5a0948beda
+    m_ActionName: Player/AttackLeft[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 913b3e61-67e0-4dc6-9547-97c5355c4f7f
+    m_ActionName: Player/Melee
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5348405947361738741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8976606487893006621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0c286b4953b5749848f7ea2acfc74f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 10
-  bulletTimer: 10
-  bullet: {fileID: 1255351463752772169, guid: a8fc1693df1f5c149b8c3eab74236f7b, type: 3}
 --- !u!114 &1377333402245282130
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -104,7 +104,6 @@ MonoBehaviour:
   renderOrder: 20
   deliverablePrefabs:
   - {fileID: 8974484161786664545, guid: 18e93ad598776c44bb0f4e7032ed785d, type: 3}
-  - {fileID: 35909738137643085, guid: 3261ee078f9b2244d9e46274dba47cd0, type: 3}
   deliverableParent: {fileID: 2350755728603602182, guid: e82ed2b2823ce0b4e98cc4acf5f64bbd, type: 3}
   isToggled: 0
   isEditing: 0
