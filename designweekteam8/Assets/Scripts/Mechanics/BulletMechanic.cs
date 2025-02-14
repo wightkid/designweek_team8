@@ -7,7 +7,6 @@ public class BulletMechanic : MonoBehaviour
     public float bulletSpeed = 10f;
     private Rigidbody2D rb2D;
     public float bulletTimer = 10f;
-    private bool hasHit = false;
     public GameObject bullet;
 
 
