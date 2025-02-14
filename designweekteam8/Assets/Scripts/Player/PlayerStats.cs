@@ -6,10 +6,6 @@ using UnityEngine.Events;
 
 public class PlayerStats : MonoBehaviour
 {
-    public UnityEvent damageTaken = new UnityEvent();
-    public UnityEvent killed = new UnityEvent();
-    public UnityEvent moneyPickedUp = new UnityEvent();
-
     public GameObject coinPrefab;
 
     public bool resetMoneyOnDeath = true;
@@ -17,11 +13,16 @@ public class PlayerStats : MonoBehaviour
 
     public float money = 0.0f;
     public int health = 100;
-    
+
+    private AudioSource playerAudioSource;
+
+    public AudioClip playerKilledAudio;
+    public AudioClip playerCoinPickedUpAudio;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,8 +34,6 @@ public class PlayerStats : MonoBehaviour
 
     public void Damage(int damage) 
     {
-        damageTaken.Invoke();
-        
         health -= damage;
 
         if (health < 0) Kill();
@@ -42,20 +41,22 @@ public class PlayerStats : MonoBehaviour
 
 
     public void Kill()
-    {
-        killed.Invoke();
-        
+    { 
         health = 0;
 
         // NOTE: need more functionality here
         DropMoney();
+        playerAudioSource.clip = playerKilledAudio;
+        playerAudioSource.Play();
         Debug.Log("Player Killed");
     }
 
     public void PickUpCoin(Coin coin)
     {
         money += coin.value;
-        moneyPickedUp.Invoke();
+
+        playerAudioSource.clip = playerCoinPickedUpAudio;
+        playerAudioSource.Play();
 
         Destroy(coin.gameObject);
     }
