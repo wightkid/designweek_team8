@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8970878516068516782}
-  - component: {fileID: 8000523287796822470}
+  - component: {fileID: 2744000737173808939}
   - component: {fileID: 4417415724732815892}
   - component: {fileID: 2420763793763782582}
   - component: {fileID: 6578289256308001509}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8000523287796822470
+--- !u!212 &2744000737173808939
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1808573042, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.59, y: 3.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6578289256308001509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +193,21 @@ MonoBehaviour:
   secondaryPowerUp: {fileID: 0}
   moveSpeed: 10
   moveAccel: 15
+  currentPlayerCharacter: 1
+  currentPlayerDirection: 1
+  playerSpritesheet:
+  - {fileID: -1808573042, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -767976780, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 603388571, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 1466528436, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -477839278, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -275249312, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 531577829, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 307687039, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -1920746032, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: -1908306245, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 2093046107, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
+  - {fileID: 1179071748, guid: 20a57c6580dfe344cb03a03d0c043934, type: 3}
 --- !u!114 &-367428748746711548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +234,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Player
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

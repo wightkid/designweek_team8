@@ -5,6 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private enum playerCharacter
+    {
+        One, 
+        Two,    
+        Three, 
+        Four
+    }
+    
+    private enum playerDirections
+    {
+        Up = 4, 
+        Down = 0, 
+        Side = 8,
+    }
+    
     // Power-Ups
     public PowerUp primaryPowerUp;
     public PowerUp secondaryPowerUp;
@@ -13,7 +28,17 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10.0f;
     public float moveAccel = 15.0f;
 
+    [SerializeField]
+    private playerCharacter currentPlayerCharacter = playerCharacter.One; 
+    [SerializeField]
+    private playerDirections currentPlayerDirection = playerDirections.Down;
+
     private Rigidbody2D rigidbody2d;
+
+    // Sprites
+    [SerializeField]
+    public Sprite[] playerSpritesheet;
+    private SpriteRenderer spriteRenderer;
 
     // Multiplayer Functionality
     private InputActionAsset inputAsset;
@@ -42,13 +67,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = playerSpritesheet[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) UsePowerUp();
-        
+
         //HandleMovement();
     }
 
@@ -96,6 +124,7 @@ public class PlayerController : MonoBehaviour
         
         // Normalize and calculate the 'wish velocity'
         Vector2 direction = inputDir.normalized;
+        HandlePlayerSprite(direction);
         Vector2 wishVelocity = direction * moveSpeed;
 
         // Interpolate smoothly between prev velocity and wish velocity
@@ -106,4 +135,25 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.velocity = new Vector2(velocityX, velocityY);
     }
 
+    private void HandlePlayerSprite(Vector2 inputDirection)
+    {
+        // Not the best way to do something like this but this is the first idea i came up with -Jon-Marc
+
+        // If not going up or down, determine if going left or right and flip sprite
+        if (inputDirection.x == 0)
+        {
+            spriteRenderer.flipX = false;
+            currentPlayerDirection = (inputDirection.y <= 0) ? playerDirections.Down : playerDirections.Up;
+        }
+        else
+        {
+            spriteRenderer.flipX = (inputDirection.x < 0) ? true : false;
+            currentPlayerDirection = playerDirections.Side;
+        }
+
+        spriteRenderer.sprite = playerSpritesheet[(int)currentPlayerDirection + (int)currentPlayerCharacter];
+        Debug.Log($"{currentPlayerDirection} {currentPlayerCharacter}");
+
+
+    }
 }
